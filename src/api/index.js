@@ -122,4 +122,10 @@ export default {
   ShowPapers(params){
     return fetch('/prize/getPapers', params)
   },
+  EditPatent(params){
+    return fetch('/prize/editPatent', params)
+  },
+  ShowPatents(params){
+    return fetch('/prize/getPatents', params)
+  }
 }

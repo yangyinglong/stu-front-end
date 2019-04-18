@@ -68,12 +68,12 @@
 			</el-form>
 			 -->
 
-			 <el-form :inline="true" :model="baseInfo" class="demo-form-inline" style="width: 100%" label-width="70px">
+			<!--  <el-form :inline="true" :model="baseInfo" class="demo-form-inline" style="width: 100%" label-width="70px">
 			  <el-form-item style="margin-left: -40px">
 					<el-button @click="readonly3=false" style="width: 100px">修改</el-button>
 					<el-button style="width: 100px" @click="commit3">提交</el-button>
 				</el-form-item>
-			</el-form>
+			</el-form> -->
 		</div>
 	</div>
 </template>

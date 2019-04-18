@@ -130,7 +130,6 @@ export default{
 						password: this.changeUserInfo.password,
 						sex: this.changeUserInfo.sex == '男' || this.changeUserInfo.sex == 1 ? 1 : 2
 					}
-					console.log(submitData)
 					this.$http.EditBaseInfo(submitData).then((result) => {
 						if (result.c === 200) {
 							this.$message({

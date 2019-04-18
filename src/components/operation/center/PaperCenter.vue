@@ -17,14 +17,16 @@
 				</el-form-item>
 			</el-form>
 		</div>
-		<div style="margin-left: 20px; min-height: 465px; width: 1100px">
+		<div style="margin-left: 20px; min-height: 465px; width: 1200px">
 			<el-table :data="paperData" v-loading="isDisAble">
-				<el-table-column prop="paperTitle" label="题目" width="240"></el-table-column>
+				<el-table-column prop="paperTitle" label="题目" width="220"></el-table-column>
 				<el-table-column prop="paperGrade" label="级别" width="100"></el-table-column>
 				<el-table-column prop="journalTitle" label="期刊名称" width="240"></el-table-column>
 				<el-table-column prop="ranking" label="作者排名" width="100"></el-table-column>
-				<el-table-column prop="totalNumber" label="作者人数" width="100"></el-table-column>
-				<el-table-column prop="paperState" label="论文状态" width="100"></el-table-column>
+				<el-table-column prop="totalNumber" label="作者人数" width="80"></el-table-column>
+				<el-table-column prop="paperState" label="论文状态" width="80"></el-table-column>
+				<el-table-column prop="getDate" label="时间" width="100"></el-table-column>
+				<el-table-column prop="score" label="得分" width="100"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
 				<template slot-scope="scope">
@@ -54,7 +56,9 @@ export default {
 					ranking: 1,
 					totalNumber: 3,
 					paperState: "投稿",
-	        		status: '待审核'
+	        		status: '待审核',
+	        		getDate: '',
+	        		score: 0
 				}			
 			]
 		}

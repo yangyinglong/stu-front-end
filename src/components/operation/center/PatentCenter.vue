@@ -13,16 +13,18 @@
 	              	</el-checkbox-group>
 				</el-form-item> -->
 				<el-form-item style="margin-left: 800px">
-					<AddHonor />
+					<AddPatent />
 				</el-form-item>
 			</el-form>
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 1100px">
-			<el-table :data="honorData" v-loading="isDisAble">
-				<el-table-column prop="honorType" label="类型" width="180"></el-table-column>
-				<el-table-column prop="honorLevel" label="级别" width="180"></el-table-column>
-				<el-table-column prop="honorGrade" label="等级" width="180"></el-table-column>
-				<el-table-column prop="getDate" label="获奖日期" width="180"></el-table-column>				
+			<el-table :data="patentData" v-loading="isDisAble">
+				<el-table-column prop="patentName" label="名称" width="240"></el-table-column>
+				<el-table-column prop="patentType" label="类别" width="120"></el-table-column>
+				<el-table-column prop="ranking" label="发明人排名" width="100"></el-table-column>
+				<el-table-column prop="totalNumber" label="发明人数" width="100"></el-table-column>
+				<el-table-column prop="patentState" label="专利状态" width="100"></el-table-column>
+				<el-table-column prop="getDate" label="时间" width="100"></el-table-column>
 				<el-table-column prop="score" label="得分" width="100"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
@@ -38,21 +40,23 @@
 </template>
 
 <script>
-import AddHonor from "@/components/operation/center/honorOper/HonorAdd"
+import AddPatent from "@/components/operation/center/patentOper/PatentAdd"
 export default {
-	name: 'HonorCenter',
+	name: 'PatentCenter',
 	data () {
 		return {
 			isDisAble: false,
 			loading: true,
-			honorData: [
+			patentData: [
 				{
-					getDate: '2018-12-13',
-					honorType: "本科生奖学金",
-					honorLevel: "国家级",
-					honorGrade: "一等",
+					patentName: '一种新型的马达受力分析',
+					patentType: "实用新型专利",
+					patentState: "申请",
+					score: 0,
+					ranking: 1,
+					totalNumber: 3,
 	        		status: '待审核',
-	        		score: 0
+	        		getDate: '2019-09-09'
 				}			
 			]
 		}
@@ -65,11 +69,11 @@ export default {
 	methods: {
 		queryData(){
 			this.isDisAble = true
-			this.$http.ShowHonors(sessionStorage.getItem("userId")).then((result) => {
+			this.$http.ShowPatents(sessionStorage.getItem("userId")).then((result) => {
 				if (result.c == 200) {
-					this.honorData = result.r
+					this.patentData = result.r
 				} else {
-					this.honorData = []
+					this.patentData = []
 				}
 				this.isDisAble = false
 			}, (err) => {
@@ -78,7 +82,7 @@ export default {
 		}
 	},
 	components: {
-		AddHonor
+		AddPatent
 	},
 }		
 </script>

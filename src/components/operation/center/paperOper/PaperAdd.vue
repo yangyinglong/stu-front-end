@@ -59,7 +59,22 @@
           <el-input v-model="paperFrom.totalNumber" placeholder="作者人数"></el-input>
         </el-form-item>
       </el-form>
+      <br>
+      <el-form :inline="true" :model="paperFrom" :rules="rules" ref="paperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+        <el-form-item label="获奖日期" prop="getDate">
+          <div class="block">
+              <el-date-picker
+                v-model="paperFrom.getDate"
+                type="date"
+                placeholder="选择日期"
+               style="width: 530px">
+              </el-date-picker>
+            </div>
+        </el-form-item>
+      </el-form>
     </div>
+    
+
     <br><br>
     <div style="margin: 0 auto">
       <el-row>
@@ -86,7 +101,8 @@
           journalTitle: '',
           ranking: '',
           totalNumber: '',
-          paperState: ''
+          paperState: '',
+          getDate:''
         },
         paperGrades: [{
           value: 1,
@@ -154,7 +170,10 @@
           ],
           paperState: [
             {required: true, message: '论文状态不能为空', trigger: 'blur'},
-          ]
+          ],
+          getDate: [
+            {required: true, message: '时间不能为空', trigger: 'blur'},
+          ],
         }
       }
     },
