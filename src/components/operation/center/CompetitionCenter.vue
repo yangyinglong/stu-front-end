@@ -13,17 +13,22 @@
 	              	</el-checkbox-group>
 				</el-form-item> -->
 				<el-form-item style="margin-left: 800px">
-					<AddHonor />
+					<AddCompetition />
 				</el-form-item>
 			</el-form>
 		</div>
-		<div style="margin-left: 20px; min-height: 465px; width: 1100px">
-			<el-table :data="honorData" v-loading="isDisAble">
-				<el-table-column prop="honorType" label="类型" width="180"></el-table-column>
-				<el-table-column prop="honorLevel" label="级别" width="180"></el-table-column>
-				<el-table-column prop="honorGrade" label="等级" width="180"></el-table-column>
-				<el-table-column prop="getDate" label="获奖日期" width="180"></el-table-column>				
-				<el-table-column prop="score" label="得分" width="100"></el-table-column>
+		<div style="margin-left: 20px; min-height: 465px; width: 95%">
+			<el-table :data="competitionData" v-loading="isDisAble">
+				<el-table-column prop="competitionType" label="类型" width="100"></el-table-column>
+				<el-table-column prop="competitionName" label="名称" width="180"></el-table-column>
+				<el-table-column prop="competitionState" label="竞赛状态" width="120"></el-table-column>
+				<el-table-column prop="competitionLevel" label="级别" width="80"></el-table-column>
+				<el-table-column prop="competitionPrize" label="等级" width="80"></el-table-column>
+				<el-table-column prop="ranking" label="参赛排名" width="80"></el-table-column>
+				<el-table-column prop="totalNumber" label="参赛人数" width="80"></el-table-column>
+				<el-table-column prop="teacher" label="指导老师" width="100"></el-table-column>
+				<el-table-column prop="getDate" label="获奖日期" width="100"></el-table-column>				
+				<el-table-column prop="score" label="得分" width="70"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
 				<template slot-scope="scope">
@@ -38,20 +43,25 @@
 </template>
 
 <script>
-import AddHonor from "@/components/operation/center/honorOper/HonorAdd"
+import AddCompetition from "@/components/operation/center/competitionOper/CompetitionAdd"
 export default {
-	name: 'HonorCenter',
+	name: 'CompetitionCenter',
 	data () {
 		return {
 			isDisAble: false,
 			loading: true,
-			honorData: [
+			competitionData: [
 				{
 					id:'',
+					competitionType: '大学生创新创业',
+					competitionName: '竞赛项目名称',
+					ranking: 1,
+					totalNumber: 3,
+					competitionState: '竞赛进行初期',
+					competitionPrize: '一等奖',
+					competitionLevel: '国家级',
+					teacher: '郭倩',
 					getDate: '2018-12-13',
-					honorType: "本科生奖学金",
-					honorLevel: "国家级",
-					honorGrade: "一等",
 	        		status: '待审核',
 	        		score: 0,
 	        		proofMaterialId: '',
@@ -67,11 +77,11 @@ export default {
 	methods: {
 		queryData(){
 			this.isDisAble = true
-			this.$http.ShowHonors(sessionStorage.getItem("userId")).then((result) => {
+			this.$http.ShowCompetitions(sessionStorage.getItem("userId")).then((result) => {
 				if (result.c == 200) {
-					this.honorData = result.r
+					this.competitionData = result.r
 				} else {
-					this.honorData = []
+					this.competitionData = []
 				}
 				this.isDisAble = false
 			}, (err) => {
@@ -91,7 +101,7 @@ export default {
 		},
 	},
 	components: {
-		AddHonor
+		AddCompetition
 	},
 }		
 </script>

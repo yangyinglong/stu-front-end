@@ -58,7 +58,8 @@ export default {
 					paperState: "投稿",
 	        		status: '待审核',
 	        		getDate: '',
-	        		score: 0
+	        		score: 0,
+	        		proofMaterialId: '',
 				}			
 			]
 		}

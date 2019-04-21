@@ -5,10 +5,10 @@ import Register from '@/authorize/Register'
 import ForgotPass from '@/authorize/ForgotPass'
 import UserCenter from '@/authorize/UserCenter'
 import Center from '@/components/operation/Center'
-import LabShow from '@/components/operation/center/labOper/LabShow'
-import LabBeSpeak from '@/components/operation/center/labOper/LabBeSpeak'
-import OrderShow from '@/components/operation/center/orderOper/OrderShow'
-import OrderEdit from '@/components/operation/center/orderOper/OrderEdit'
+// import LabShow from '@/components/operation/center/labOper/LabShow'
+// import LabBeSpeak from '@/components/operation/center/labOper/LabBeSpeak'
+// import OrderShow from '@/components/operation/center/orderOper/OrderShow'
+// import OrderEdit from '@/components/operation/center/orderOper/OrderEdit'
 
 Vue.use(Router)
 
@@ -40,30 +40,30 @@ const router = new Router({
       component: Center,
       meta: {authRequired: true}
     },
-    {      
-      path: '/labshow',
-      name: 'LabShow',
-      component: LabShow,
-      meta: {authRequired: true}
-    },
-    {      
-      path: '/labbespeak',
-      name: 'LabBeSpeak',
-      component: LabBeSpeak,
-      meta: {authRequired: true}
-    },
-    {     
-      path: '/ordershow',
-      name: 'OrderShow',
-      component: OrderShow,
-      meta: {authRequired: true}
-    },
-    {     
-      path: '/orderedit',
-      name: 'OrderEdit',
-      component: OrderEdit,
-      meta: {authRequired: true}
-    }
+    // {      
+    //   path: '/labshow',
+    //   name: 'LabShow',
+    //   component: LabShow,
+    //   meta: {authRequired: true}
+    // },
+    // {      
+    //   path: '/labbespeak',
+    //   name: 'LabBeSpeak',
+    //   component: LabBeSpeak,
+    //   meta: {authRequired: true}
+    // },
+    // {     
+    //   path: '/ordershow',
+    //   name: 'OrderShow',
+    //   component: OrderShow,
+    //   meta: {authRequired: true}
+    // },
+    // {     
+    //   path: '/orderedit',
+    //   name: 'OrderEdit',
+    //   component: OrderEdit,
+    //   meta: {authRequired: true}
+    // }
   ]
 })
 

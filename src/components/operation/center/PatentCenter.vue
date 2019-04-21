@@ -56,7 +56,8 @@ export default {
 					ranking: 1,
 					totalNumber: 3,
 	        		status: '待审核',
-	        		getDate: '2019-09-09'
+	        		getDate: '2019-09-09',
+	        		proofMaterialId: '',
 				}			
 			]
 		}

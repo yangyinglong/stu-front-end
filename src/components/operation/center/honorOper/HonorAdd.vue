@@ -64,7 +64,7 @@
         
       </el-form>
       <br>
-      <!-- <el-upload
+      <el-upload
         class="upload-demo"
         ref="upload"
         action="/api/file/upload"
@@ -75,8 +75,8 @@
         :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb</div>
-      </el-upload> -->
+        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb，请将表单信息填好之后上传文件</div>
+      </el-upload>
     </div>
     <br><br>
     <div style="margin: 0 auto">
@@ -103,7 +103,8 @@
           honorType: '',
           honorLevel: '',
           honorGrade: '',
-          getDate: ''
+          getDate: '',
+          proofMaterialId: '',
         },
         honorTypes: [{
           value: 1,
@@ -173,14 +174,18 @@
           getDate: [
             {required: true, message: '时间不能为空', trigger: 'blur'},
           ]
-        }
+        },
+        checkCode: '',
       }
+    },
+    created(){
+      this.createCode()
     },
     mounted() {
     },
     computed: {
       fileForm1() {
-        return {fileName: 'hello', isFront: 1}
+        return {fileName: this.honorFrom.stuId +"_"+ this.honorFrom.honorType + "_" + this.honorFrom.honorLevel + "_" + this.honorFrom.honorGrade + "_" + this.checkCode, isFront: 1}
       },
     },
     methods: {
@@ -192,6 +197,7 @@
               this.$message.warning("请完善信息！")
               return
             }
+            this.honorFrom.proofMaterialId = this.honorFrom.stuId +"_"+ this.honorFrom.honorType + "_" + this.honorFrom.honorLevel + "_" + this.honorFrom.honorGrade + "_" + this.checkCode + "_1.jpg"
             this.$http.EditHonor(this.honorFrom).then((result) => {
               if (result.c === 200) {
                 this.$message({
@@ -224,7 +230,19 @@
       },
       handlePreview(file) {
         console.log(file);
-      }
+      },
+      createCode(){
+           var code = "";    
+           var codeLength = 4;//验证码的长度   
+           var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',   
+                       'S','T','U','V','W','X','Y','Z');//随机数   
+           for(var i = 0; i < codeLength; i++) {
+                 //循环操作   
+                 var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
+                 code += random[index];//根据索引取得随机数加到code上   
+           }   
+          this.checkCode = code;
+      },
     }
   }
 

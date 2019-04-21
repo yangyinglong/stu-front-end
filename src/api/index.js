@@ -127,5 +127,21 @@ export default {
   },
   ShowPatents(params){
     return fetch('/prize/getPatents', params)
+  },
+  EditCompetition(params){
+    return fetch('/prize/editCompetition', params)
+  },
+  ShowCompetitions(params){
+    return fetch('/prize/getCompetitions', params)
+  },
+  EditInnoPro(params){
+    return fetch('/prize/editInnoPro', params)
+  },
+  ShowInnoPros(params){
+    return fetch('/prize/getInnoPros', params)
+  },
+
+  DownLoad(params){
+    return getFetch('/file/printImg', params)
   }
 }

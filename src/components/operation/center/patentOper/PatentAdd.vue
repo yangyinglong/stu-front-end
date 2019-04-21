@@ -66,6 +66,20 @@
             </div>
         </el-form-item>
       </el-form>
+      <br>
+      <el-upload
+        class="upload-demo"
+        ref="upload"
+        action="/api/file/upload"
+        :data="fileForm3"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :file-list="fileList"
+        :auto-upload="false">
+        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb，请将表单信息填好之后上传文件</div>
+      </el-upload>
     </div>
     
 
@@ -95,7 +109,8 @@
           ranking: '',
           totalNumber: '',
           patentState: '',
-          getDate:''
+          getDate:'',
+          proofMaterialId: '',
         },
         patentTypes: [{
           value: 1,
@@ -149,9 +164,12 @@
         }
       }
     },
-    mounted() {
-    },
     computed: {
+      fileForm3() {
+        return {fileName: this.patentFrom.stuId +"_"+ this.patentFrom.patentName, isFront: 3}
+      },
+    },
+    mounted() {
     },
     methods: {
       addHonor(patentFrom) {
@@ -161,6 +179,7 @@
               this.$message.warning("请完善信息！")
               return
             }
+            this.patentFrom.proofMaterialId = this.patentFrom.stuId +"_"+ this.patentFrom.patentName + "_3.jpg"
             this.$http.EditPatent(this.patentFrom).then((result) => {
               if (result.c === 200) {
                 this.$message({
@@ -185,7 +204,16 @@
             this.$message.warning("请完善信息！")
           }
         })
-      }
+      },
+      submitUpload() {
+        this.$refs.upload.submit();
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
     }
   }
 

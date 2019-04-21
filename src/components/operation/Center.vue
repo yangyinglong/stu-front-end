@@ -10,7 +10,8 @@
 			<el-tab-pane label="荣誉奖项" name="honorCenter"><HonorCenter /></el-tab-pane>
 			<el-tab-pane label="学术论文" name="paperCenter"><PaperCenter /></el-tab-pane>
 			<el-tab-pane label="发明专利" name="patentCenter"><PatentCenter /></el-tab-pane>
-			<!-- <el-tab-pane label="订单中心" name="ordercenter"><OrderCenter /></el-tab-pane> -->
+			<el-tab-pane label="学科竞赛" name="competitionCenter"><CompetitionCenter /></el-tab-pane>
+			<el-tab-pane label="创新项目" name="innoProCenter"><InnoProCenter /></el-tab-pane>
 		</el-tabs>
 	</div>
 </template>
@@ -22,6 +23,8 @@ import HonorCenter from '@/components/operation/center/HonorCenter'
 import PrizeCenter from '@/components/operation/center/PrizeCenter'
 import PaperCenter from '@/components/operation/center/PaperCenter'
 import PatentCenter from '@/components/operation/center/PatentCenter'
+import CompetitionCenter from '@/components/operation/center/CompetitionCenter'
+import InnoProCenter from '@/components/operation/center/InnoProCenter'
 export default {
 	name: 'Center',
 	data () {
@@ -42,7 +45,9 @@ export default {
 		HonorCenter,
 		PrizeCenter,
 		PaperCenter,
-		PatentCenter
+		PatentCenter,
+		CompetitionCenter,
+		InnoProCenter
 	},
 }		
 </script>
