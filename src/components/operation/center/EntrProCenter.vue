@@ -3,22 +3,22 @@
 		<div style="margin-top: 20px; margin-left: 120px; height: 64px">
 			<el-form :inline="true" :model="queryData" class="demo-form-inline">
 				<el-form-item style="margin-left: 800px">
-					<AddInnoPro />
+					<AddEntrPro />
 				</el-form-item>
 			</el-form>
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 95%">
-			<el-table :data="innoProData" v-loading="isDisAble">
+			<el-table :data="entrProData" v-loading="isDisAble">
 				<el-table-column prop="proType" label="类型" width="100"></el-table-column>
-				<el-table-column prop="proName" label="名称" width="180"></el-table-column>
-				<el-table-column prop="proIntr" label="项目简介" width="100"></el-table-column>
-				<el-table-column prop="proState" label="项目状态" width="80"></el-table-column>
+				<el-table-column prop="proName" label="名称" width="190"></el-table-column>
+				<!-- <el-table-column prop="proIntr" label="项目简介" width="100"></el-table-column> -->
+				<el-table-column prop="proState" label="项目状态" width="120"></el-table-column>
 				<el-table-column prop="proLevel" label="项目级别" width="80"></el-table-column>
 				<el-table-column prop="ranking" label="参赛排名" width="80"></el-table-column>
 				<el-table-column prop="totalNumber" label="参赛人数" width="80"></el-table-column>
 				<el-table-column prop="teacher" label="指导老师" width="80"></el-table-column>
-				<el-table-column prop="getDate" label="日期" width="80"></el-table-column>
-				<el-table-column prop="proResult" label="项目成果" width="100"></el-table-column>	
+				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
+				<el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
@@ -34,19 +34,18 @@
 </template>
 
 <script>
-import AddInnoPro from "@/components/operation/center/innoProOper/InnoProAdd"
+import AddEntrPro from "@/components/operation/center/entrProOper/EntrProAdd"
 export default {
-	name: 'InnoProCenter',
+	name: 'EntrProCenter',
 	data () {
 		return {
 			isDisAble: false,
 			loading: true,
-			innoProData: [
+			entrProData: [
 				{
 					id:'',
 					proName: '大学生创新项目测试数据1',
 					proType: '创业孵化项目', //
-					proIntr: '这是一个大学生创业项目',
 					ranking: 1,
 					totalNumber: 3,
 					proState: '竞赛进行初期',
@@ -69,11 +68,11 @@ export default {
 	methods: {
 		queryData(){
 			this.isDisAble = true
-			this.$http.ShowInnoPros(sessionStorage.getItem("userId")).then((result) => {
+			this.$http.ShowEntrPros(sessionStorage.getItem("userId")).then((result) => {
 				if (result.c == 200) {
-					this.innoProData = result.r
+					this.entrProData = result.r
 				} else {
-					this.innoProData = []
+					this.entrProData = []
 				}
 				this.isDisAble = false
 			}, (err) => {
@@ -93,7 +92,7 @@ export default {
 		},
 	},
 	components: {
-		AddInnoPro
+		AddEntrPro
 	},
 }		
 </script>

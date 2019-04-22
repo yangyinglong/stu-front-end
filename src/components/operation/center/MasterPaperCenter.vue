@@ -3,22 +3,22 @@
 		<div style="margin-top: 20px; margin-left: 120px; height: 64px">
 			<el-form :inline="true" :model="queryData" class="demo-form-inline">
 				<el-form-item style="margin-left: 800px">
-					<AddInnoPro />
+					<AddMasterPaper />
 				</el-form-item>
 			</el-form>
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 95%">
-			<el-table :data="innoProData" v-loading="isDisAble">
-				<el-table-column prop="proType" label="类型" width="100"></el-table-column>
-				<el-table-column prop="proName" label="名称" width="180"></el-table-column>
-				<el-table-column prop="proIntr" label="项目简介" width="100"></el-table-column>
-				<el-table-column prop="proState" label="项目状态" width="80"></el-table-column>
-				<el-table-column prop="proLevel" label="项目级别" width="80"></el-table-column>
-				<el-table-column prop="ranking" label="参赛排名" width="80"></el-table-column>
-				<el-table-column prop="totalNumber" label="参赛人数" width="80"></el-table-column>
-				<el-table-column prop="teacher" label="指导老师" width="80"></el-table-column>
-				<el-table-column prop="getDate" label="日期" width="80"></el-table-column>
-				<el-table-column prop="proResult" label="项目成果" width="100"></el-table-column>	
+			<el-table :data="masterPaperData" v-loading="isDisAble">
+				<el-table-column prop="paperName" label="题目" width="130"></el-table-column>
+				<el-table-column prop="paperAbstract" label="摘要" width="110"></el-table-column>
+				<el-table-column prop="score1" label="外审成绩1" width="90"></el-table-column>
+				<el-table-column prop="sugg1" label="外审意见1" width="120"></el-table-column>
+				<el-table-column prop="score2" label="外审成绩2" width="90"></el-table-column>
+				<el-table-column prop="sugg2" label="外审意见2" width="120"></el-table-column>
+				<el-table-column prop="score3" label="答辩成绩" width="90"></el-table-column>
+				<el-table-column prop="sugg3" label="答辩意见" width="120"></el-table-column>
+				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
+				<!-- <el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	 -->
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
@@ -34,25 +34,24 @@
 </template>
 
 <script>
-import AddInnoPro from "@/components/operation/center/innoProOper/InnoProAdd"
+import AddMasterPaper from "@/components/operation/center/masterPaperOper/MasterPaperAdd"
 export default {
-	name: 'InnoProCenter',
+	name: 'EngiProCenter',
 	data () {
 		return {
 			isDisAble: false,
 			loading: true,
-			innoProData: [
+			masterPaperData: [
 				{
 					id:'',
-					proName: '大学生创新项目测试数据1',
-					proType: '创业孵化项目', //
-					proIntr: '这是一个大学生创业项目',
-					ranking: 1,
-					totalNumber: 3,
-					proState: '竞赛进行初期',
-					proResult: '创业成果',
-					proLevel: '国家级',
-					teacher: '郭倩',
+					paperName: '大学生工程项目测试数据1',
+					paperAbstract: '大学生工程项目测试数据1简介',
+					score1: 'A', // 性能指标
+					sugg1: '一审意见', // 个人所做的工作
+					score2: 'B',
+					sugg2: '二审意见',
+					score3: 'A',
+					sugg3: '答辩意见',
 					getDate: '2018-12-13',
 	        		status: '待审核',
 	        		score: 0,
@@ -69,11 +68,11 @@ export default {
 	methods: {
 		queryData(){
 			this.isDisAble = true
-			this.$http.ShowInnoPros(sessionStorage.getItem("userId")).then((result) => {
+			this.$http.ShowMasterPapers(sessionStorage.getItem("userId")).then((result) => {
 				if (result.c == 200) {
-					this.innoProData = result.r
+					this.masterPaperData = result.r
 				} else {
-					this.innoProData = []
+					this.masterPaperData = []
 				}
 				this.isDisAble = false
 			}, (err) => {
@@ -93,7 +92,7 @@ export default {
 		},
 	},
 	components: {
-		AddInnoPro
+		AddMasterPaper
 	},
 }		
 </script>

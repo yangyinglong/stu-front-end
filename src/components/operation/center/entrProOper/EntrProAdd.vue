@@ -3,32 +3,32 @@
     <b class="linked" @click="dialogLoginVisible = true">
       <el-button type="info" plain icon="el-icon-plus" size="mini"></el-button>
     </b>
-    <el-dialog width="720px" title="添加创新项目" :visible.sync="dialogLoginVisible" class="content">
+    <el-dialog width="720px" title="添加创业项目" :visible.sync="dialogLoginVisible" class="content">
       <div style="width: 100%; margin-left: -15px">
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="姓名" prop="name">
-          <el-input v-model="innoProFrom.name" placeholder="姓名" readonly="true"></el-input>
+          <el-input v-model="entrProFrom.name" placeholder="姓名" readonly="true"></el-input>
         </el-form-item>
         <el-form-item label="学号">
-          <el-input v-model="innoProFrom.stuId" placeholder="学号" readonly="true"></el-input>
+          <el-input v-model="entrProFrom.stuId" placeholder="学号" readonly="true"></el-input>
         </el-form-item>
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="项目名称" prop="proName">
-          <el-input v-model="innoProFrom.proName" placeholder="项目名称" style="width: 525px"></el-input>
+          <el-input v-model="entrProFrom.proName" placeholder="项目名称" style="width: 525px"></el-input>
         </el-form-item>
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <!-- <el-form :inline="true" :model="entrProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="项目简介" prop="proIntr">
-          <el-input type="textarea" v-model="innoProFrom.proIntr" placeholder="项目简介" style="width: 525px"></el-input>
+          <el-input type="textarea" v-model="entrProFrom.proIntr" placeholder="项目简介" style="width: 525px"></el-input>
         </el-form-item>
       </el-form>
-      <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" ref="innoProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <br> -->
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" ref="entrProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="项目类别" prop="proType">
-          <el-select v-model="innoProFrom.proType" placeholder="请选择项目类别" style="width: 525px">
+          <el-select v-model="entrProFrom.proType" placeholder="请选择项目类别" style="width: 525px">
             <el-option
               v-for="item in proTypes"
               :key="item.value"
@@ -39,9 +39,9 @@
         </el-form-item>        
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" ref="innoProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" ref="entrProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="项目级别" prop="proLevel">
-          <el-select v-model="innoProFrom.proLevel" placeholder="请选择项目级别" style="width: 200px">
+          <el-select v-model="entrProFrom.proLevel" placeholder="请选择项目级别" style="width: 200px">
             <el-option
               v-for="item in proLevels"
               :key="item.value"
@@ -51,7 +51,7 @@
           </el-select>  
         </el-form-item>
         <el-form-item label="竞赛状态" prop="proState">
-          <el-select v-model="innoProFrom.proState" placeholder="请选择竞赛状态" style="width: 200px">
+          <el-select v-model="entrProFrom.proState" placeholder="请选择竞赛状态" style="width: 200px">
             <el-option
               v-for="item in proStates"
               :key="item.value"
@@ -63,23 +63,23 @@
         
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" ref="innoProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" ref="entrProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="参赛排名" prop="ranking">
-          <el-input v-model="innoProFrom.ranking" placeholder="参赛排名"></el-input>
+          <el-input v-model="entrProFrom.ranking" placeholder="参赛排名"></el-input>
         </el-form-item>
         <el-form-item label="参赛人数" prop="totalNumber">
-          <el-input v-model="innoProFrom.totalNumber" placeholder="参赛人数"></el-input>
+          <el-input v-model="entrProFrom.totalNumber" placeholder="参赛人数"></el-input>
         </el-form-item>
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" ref="innoProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" ref="entrProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="指导老师" prop="teacher">
-          <el-input v-model="innoProFrom.teacher" placeholder="指导老师"></el-input>
+          <el-input v-model="entrProFrom.teacher" placeholder="指导老师"></el-input>
         </el-form-item>
         <el-form-item label="获奖日期" prop="getDate">
           <div class="block">
               <el-date-picker
-                v-model="innoProFrom.getDate"
+                v-model="entrProFrom.getDate"
                 type="date"
                 placeholder="选择日期"
                 style="width: 200px">
@@ -88,9 +88,9 @@
         </el-form-item>        
       </el-form>
       <br>
-      <el-form :inline="true" :model="innoProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <el-form :inline="true" :model="entrProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="项目成果" prop="proResult">
-          <el-input type="textarea" v-model="innoProFrom.proResult" placeholder="项目成果" style="width: 525px"></el-input>
+          <el-input type="textarea" v-model="entrProFrom.proResult" placeholder="项目成果" style="width: 525px"></el-input>
         </el-form-item>
       </el-form>
       <br>
@@ -112,7 +112,7 @@
     <div style="margin: 0 auto">
       <el-row>
         <el-button style="width: 120px" @click="dialogLoginVisible = false, fileList = []">取消</el-button>
-        <el-button type="info" style="width: 120px" @click="addHonor('innoProFrom')">增加</el-button>
+        <el-button type="info" style="width: 120px" @click="addHonor('entrProFrom')">增加</el-button>
       </el-row>
     </div>
     </el-dialog>
@@ -122,17 +122,16 @@
 
 <script>
   export default {
-    name: 'AddInnoPro',
+    name: 'AddEntrPro',
     data() {
       return {
         dialogLoginVisible: false,
         fileList: [],
-        innoProFrom: {
+        entrProFrom: {
           stuId: sessionStorage.getItem('userId'),
           name: sessionStorage.getItem('userName'),
           proName: '',
           proType: '', //
-          proIntr: '',
           ranking: null,
           totalNumber: null,
           proState: '',
@@ -143,14 +142,20 @@
           proofMaterialId: '',
         },
         proTypes: [{
-          value: "创业孵化项目",
-          label: "创业孵化项目"
+          value: "新苗计划",
+          label: "新苗计划"
         },{
-          value: "互联网创业项目",
-          label: "互联网创业项目"
+          value: "创新创业孵化项目",
+          label: "创新创业孵化项目"
         },{
-          value: "个人创业项目",
-          label: "个人创业项目"
+          value: "科技成果推广项目",
+          label: "科技成果推广项目"
+        },{
+          value: "科技推广项目",
+          label: "科技推广项目"
+        },{
+          value: "优秀论文资助项目",
+          label: "优秀论文资助项目"
         },{
           value: "其他项目",
           label: "其他项目"
@@ -195,9 +200,9 @@
           proState: [
             {required: true, message: '比赛状态不能为空', trigger: 'blur'},
           ],
-          proIntr: [
-            {required: true, message: '项目简介不能为空', trigger: 'blur'},
-          ],
+          // proIntr: [
+          //   {required: true, message: '项目简介不能为空', trigger: 'blur'},
+          // ],
           proResult: [
             {required: true, message: '项目成果不能为空', trigger: 'blur'},
           ],
@@ -221,41 +226,41 @@
       }
     },
     created(){
-      // this.createCode()
+      this.createCode()
     },
     mounted() {
     },
     computed: {
       fileForm4() {
-        return {fileName: this.innoProFrom.stuId +"_"+ this.innoProFrom.proName, isFront: 5}
+        return {fileName: this.entrProFrom.stuId +"_"+ this.entrProFrom.proName, isFront: 6}
       },
     },
     methods: {
-      addHonor(innoProFrom) {
-        this.$refs[innoProFrom].validate((valid) => {
-          console.log(this.innoProFrom)
+      addHonor(entrProFrom) {
+        this.$refs[entrProFrom].validate((valid) => {
+          console.log(this.entrProFrom)
           if (valid) {
-            if (this.innoProFrom.name == '') {
+            if (this.entrProFrom.name == '') {
               this.$message.warning("请完善信息！")
               return
             }
-            this.$http.EditInnoPro(this.innoProFrom).then((result) => {
+            this.$http.EditEntrPro(this.entrProFrom).then((result) => {
               if (result.c === 200) {
                 this.$message({
                   message: '添加成功！',
                   type: 'success'
                 });
-                this.innoProFrom.proType = ''
-                this.innoProFrom.proName = ''
-                this.innoProFrom.proIntr = ''
-                this.innoProFrom.ranking = ''
-                this.innoProFrom.totalNumber = ''
-                this.innoProFrom.proState = ''
-                this.innoProFrom.proResult = ''
-                this.innoProFrom.proLevel = ''
-                this.innoProFrom.getDate = ''
-                this.innoProFrom.teacher = ''
-                this.innoProFrom.proofMaterialId = ''
+                this.entrProFrom.proType = ''
+                this.entrProFrom.proName = ''
+                // this.entrProFrom.proIntr = ''
+                this.entrProFrom.ranking = ''
+                this.entrProFrom.totalNumber = ''
+                this.entrProFrom.proState = ''
+                this.entrProFrom.proResult = ''
+                this.entrProFrom.proLevel = ''
+                this.entrProFrom.getDate = ''
+                this.entrProFrom.teacher = ''
+                this.entrProFrom.proofMaterialId = ''
                 this.$emit('flushQuery')
                 this.fileList = []
                 this.dialogLoginVisible = false
@@ -272,7 +277,7 @@
       },
       submitUpload() {
         this.$refs.upload.submit();
-        this.innoProFrom.proofMaterialId = this.innoProFrom.stuId +"_"+ this.innoProFrom.proName+ "_5.jpg"
+        this.entrProFrom.proofMaterialId = this.entrProFrom.stuId +"_"+ this.entrProFrom.proName+ "_6.jpg"
       },
       handleRemove(file, fileList) {
         console.log(file, fileList);

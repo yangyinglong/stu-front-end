@@ -140,6 +140,36 @@ export default {
   ShowInnoPros(params){
     return fetch('/prize/getInnoPros', params)
   },
+  EditEntrPro(params){
+    return fetch('/prize/editEntrPro', params)
+  },
+  ShowEntrPros(params){
+    return fetch('/prize/getEntrPros', params)
+  },
+  EditEngiPro(params){
+    return fetch('/prize/editEngiPro', params)
+  },
+  ShowEngiPros(params){
+    return fetch('/prize/getEngiPros', params)
+  },
+  EditAcadExch(params){
+    return fetch('/prize/editAcadExch', params)
+  },
+  ShowAcadExchs(params){
+    return fetch('/prize/getAcadExchs', params)
+  },
+  EditWork(params){
+    return fetch('/prize/editWork', params)
+  },
+  ShowWorks(params){
+    return fetch('/prize/getWorks', params)
+  },
+  EditMasterPaper(params){
+    return fetch('/prize/editMasterPaper', params)
+  },
+  ShowMasterPapers(params){
+    return fetch('/prize/getMasterPapers', params)
+  },
 
   DownLoad(params){
     return getFetch('/file/printImg', params)
