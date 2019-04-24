@@ -38,17 +38,17 @@
       </el-form>
       <br>
       <el-form :inline="true" :model="acadExchFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="项目名称" prop="organization">
-          <el-input v-model="acadExchFrom.organization" placeholder="项目名称" style="width: 525px"></el-input>
+        <el-form-item label="项目/会议名称" prop="conferenceName">
+          <el-input v-model="acadExchFrom.conferenceName" placeholder="项目名称" style="width: 525px"></el-input>
         </el-form-item>
       </el-form>
        <br>
-      <el-form :inline="true" :model="acadExchFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <!-- <el-form :inline="true" :model="acadExchFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="会议名称" prop="conferenceName">
           <el-input v-model="acadExchFrom.conferenceName" placeholder="会议名称" style="width: 525px"></el-input>
         </el-form-item>
       </el-form>
-      <br>
+      <br> -->
       <el-form :inline="true" :model="acadExchFrom" :rules="rules" ref="acadExchFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="开始日期" prop="startTime">
           <div class="block">
@@ -116,7 +116,7 @@
           name: sessionStorage.getItem('userName'),
 
           exchangeType: '',
-          organization: '', //
+          organization: '与组织机构合为一个字段', //
           conferenceName: '',
           startTime: '',
           endTime: '',
@@ -209,7 +209,7 @@
                   type: 'success'
                 });
                 this.acadExchFrom.exchangeType = ''
-                this.acadExchFrom.organization = ''
+                // this.acadExchFrom.organization = ''
                 this.acadExchFrom.conferenceName = ''
                 this.acadExchFrom.startTime = ''
                 this.acadExchFrom.endTime = ''

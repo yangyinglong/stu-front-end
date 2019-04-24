@@ -181,7 +181,7 @@
       },
       submitUpload() {
         this.$refs.upload.submit();
-        this.workFrom.proofMaterialId = this.workFrom.stuId +"_"+ this.workFrom.companyName + "_9.jpg"
+        this.workFrom.  proofMaterialId = this.workFrom.stuId +"_"+ this.workFrom.companyName + "_9.jpg"
       },
       handleRemove(file, fileList) {
         console.log(file, fileList);
