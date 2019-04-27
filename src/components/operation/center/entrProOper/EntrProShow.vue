@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <b class="linked" @click="dialogLoginVisible = true">
-      <el-button type="info" plain icon="el-icon-plus" size="mini"></el-button>
-    </b>
-    <el-dialog width="720px" title="添加创业项目" :visible.sync="dialogLoginVisible" class="content">
-      <div style="width: 100%; margin-left: -15px">
+  <div class="lab-main">
+    <div class="content">
+      <br>
       <el-form :inline="true" :model="entrProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="姓名" prop="name">
           <el-input v-model="entrProFrom.name" placeholder="姓名" readonly="true"></el-input>
@@ -88,39 +85,39 @@
         </el-form-item>
       </el-form>
       <br>
+      <br>
       <el-upload
         class="upload-demo"
         ref="upload"
         action="/api/file/upload"
         :data="fileForm4"
-        :limit = 1
         :on-preview="handlePreview"
         :on-remove="handleRemove"
+        :limit = 1
         :file-list="fileList"
         :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
         <div slot="tip" class="el-upload__tip">只能上传pdf文件,请将表单信息填好之后上传文件</div>
       </el-upload>
+      <br><br><br>
+      <el-form label-width="70px" :model="entrProFrom">
+        <el-form-item style="margin-left: -40px">
+          <el-button style="width: 100px" @click="deletes" type="warning">删除</el-button>
+          <el-button style="width: 100px" @click="modify('entrProFrom')" type="info">确定</el-button>
+          <el-button style="width: 100px" @click="cencel">返回</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <br><br>
-    <div style="margin: 0 auto">
-      <el-row>
-        <el-button style="width: 120px" @click="dialogLoginVisible = false, fileList = []">取消</el-button>
-        <el-button type="info" style="width: 120px" @click="addHonor('entrProFrom')">增加</el-button>
-      </el-row>
-    </div>
-    </el-dialog>
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'AddEntrPro',
-    data() {
-      return {
-        dialogLoginVisible: false,
+
+export default {
+  name: 'OrderCenter',
+  data() {
+    return {
         fileList: [],
         entrProFrom: {
           stuId: sessionStorage.getItem('userId'),
@@ -217,81 +214,112 @@
             {required: true, message: '参赛人数不能为空', trigger: 'blur'},
           ]
         },
-        checkCode: '',
-      }
-    },
-    created(){
-    },
-    mounted() {
-    },
-    computed: {
-      fileForm4() {
-        return {fileName: this.entrProFrom.stuId +"_"+ this.entrProFrom.proName, isFront: 6}
-      },
-    },
-    methods: {
-      addHonor(entrProFrom) {
-        this.$refs[entrProFrom].validate((valid) => {
-          if (valid) {
-            if (this.entrProFrom.name == '') {
-              this.$message.warning("请完善信息！")
-              return
-            }
-            if (this.entrProFrom.proofMaterialId == '') {
-              this.$message.warning("请上传佐证材料")
-              return
-            }
-            this.$http.EditEntrPro(this.entrProFrom).then((result) => {
-              if (result.c === 200) {
-                this.$message({
-                  message: '添加成功！',
-                  type: 'success'
-                });
-                this.entrProFrom.proType = ''
-                this.entrProFrom.proName = ''
-                // this.entrProFrom.proIntr = ''
-                this.entrProFrom.ranking = ''
-                this.entrProFrom.totalNumber = ''
-                this.entrProFrom.proState = ''
-                this.entrProFrom.proResult = ''
-                this.entrProFrom.proLevel = ''
-                this.entrProFrom.getDate = ''
-                this.entrProFrom.teacher = ''
-                this.entrProFrom.proofMaterialId = ''
-                this.$emit('flushQuery')
-                this.fileList = []
-                this.dialogLoginVisible = false
-              } else {
-                this.$message.warning(result.r)
-              }
-            }, (err) => {
-              this.$message.error(err.msg)
-            })
-          } else {
-            this.$message.warning("请完善信息！")
-          }
-        })
-      },
-      submitUpload() {
-        this.$refs.upload.submit();
-        this.entrProFrom.proofMaterialId = this.entrProFrom.stuId +"_"+ this.entrProFrom.proName+ "_6.pdf"
-      },
-      handleRemove(file, fileList) {
-      },
-      handlePreview(file) {
-      }
     }
-  }
+  },
+  created() {
+    this.entrProFrom.id = sessionStorage.getItem('id')
+    this.entrProFrom.name = sessionStorage.getItem('userName')
+    this.entrProFrom.stuId = sessionStorage.getItem('stuId')
+    this.entrProFrom.proName = sessionStorage.getItem('proName')
+    this.entrProFrom.proType = sessionStorage.getItem('proType')
+    this.entrProFrom.proState = sessionStorage.getItem('proState')
+    this.entrProFrom.ranking = sessionStorage.getItem('ranking')
+    this.entrProFrom.totalNumber = sessionStorage.getItem('totalNumber')
+    this.entrProFrom.proLevel = sessionStorage.getItem('proLevel')
+    this.entrProFrom.proResult = sessionStorage.getItem('proResult')
+    this.entrProFrom.teacher = sessionStorage.getItem('teacher')
+    this.entrProFrom.getDate = sessionStorage.getItem('getDate')
+    
+  },
+  computed: {
+      fileForm4() {
+         return {fileName: this.entrProFrom.stuId +"_"+ this.entrProFrom.proName, isFront: 6}
+      },
+    },
+  methods: {
+    cencel() {
+      this.$router.push({name: 'Center', params:{tagP: 'entrProCenter'}})
+    },
+    modify(entrProFrom) {
+      this.$refs[entrProFrom].validate((valid) => {
+        if (valid) {
+          if (this.entrProFrom.proofMaterialId == '') {
+            this.$message.warning("请上传佐证材料")
+            return
+          }
+          this.$http.EditEntrPro(this.entrProFrom).then((result) => {
+            if (result.c === 200) {
+              this.$message({
+                message: '修改成功！',
+                type: 'success'
+              });
+              this.$emit('flushQuery')
+              this.$router.push({name: 'Center', params:{tagP: 'entrProCenter'}})
+            } else {
+              this.$message.warning(result.r)
+            }
+          }, (err) => {
+            this.$message.error(err.msg)
+          })
+        } else {
+          this.$message.warning("请完善信息！")
+        }
+      })
+    },
+    deletes() {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.DeleEntrPro(this.entrProFrom.id).then((result) => {
+          if (result.c === 200) {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+            this.$emit('flushQuery')
+            this.$router.push({name: 'Center', params:{tagP: 'entrProCenter'}})
+          } else {
+            this.$message.warning(result.r)
+          }
+        }, (err) => {
+          this.$message.error(err.msg)
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
 
+    },
+    submitUpload() {
+      this.entrProFrom.proofMaterialId = this.entrProFrom.stuId +"_"+ this.entrProFrom.proName+ "_6.pdf"
+      this.$refs.upload.submit();
+    },
+    handleRemove(file, fileList) {
+    },
+    handlePreview(file) {
+    },
+  }
+}
 </script>
 
 <style scoped>
-.content {
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	horiz-align: center;
-	white-space: nowrap;
-	margin: 0;
-}
+  .lab-main{
+    min-height: 530px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .content {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    horiz-align: center;
+    white-space: nowrap;
+    margin: 0;
+    border:1px solid #999999;
+    margin-top: 50px;
+  }
 </style>

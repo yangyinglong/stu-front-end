@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <b class="linked" @click="dialogLoginVisible = true">
-      <el-button type="info" plain icon="el-icon-plus" size="mini"></el-button>
-    </b>
-    <el-dialog width="720px" title="添加学科竞赛" :visible.sync="dialogLoginVisible" class="content">
-      <div style="width: 100%; margin-left: -15px">
+  <div class="lab-main">
+    <div class="content">
+      <br>
       <el-form :inline="true" :model="competitionFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="姓名" prop="name">
           <el-input v-model="competitionFrom.name" placeholder="姓名" readonly="true"></el-input>
@@ -94,6 +91,7 @@
         </el-form-item>        
       </el-form>
       <br>
+      <br>
       <el-upload
         class="upload-demo"
         ref="upload"
@@ -101,32 +99,31 @@
         :data="fileForm4"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
-        :file-list="fileList"
         :limit = 1
+        :file-list="fileList"
         :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
         <div slot="tip" class="el-upload__tip">只能上传pdf文件,请将表单信息填好之后上传文件</div>
       </el-upload>
+      <br><br><br>
+      <el-form label-width="70px" :model="competitionFrom">
+        <el-form-item style="margin-left: -40px">
+          <el-button style="width: 100px" @click="deletes" type="warning">删除</el-button>
+          <el-button style="width: 100px" @click="modify('competitionFrom')" type="info">确定</el-button>
+          <el-button style="width: 100px" @click="cencel">返回</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <br><br>
-    <div style="margin: 0 auto">
-      <el-row>
-        <el-button style="width: 120px" @click="dialogLoginVisible = false, fileList = []">取消</el-button>
-        <el-button type="info" style="width: 120px" @click="addHonor('competitionFrom')">增加</el-button>
-      </el-row>
-    </div>
-    </el-dialog>
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'AddCompetition',
-    data() {
-      return {
-        dialogLoginVisible: false,
+
+export default {
+  name: 'OrderCenter',
+  data() {
+    return {
         fileList: [],
         competitionFrom: {
           stuId: sessionStorage.getItem('userId'),
@@ -252,80 +249,124 @@
           ]
         },
         checkCode: '',
-      }
-    },
-    created(){
-      // this.createCode()
-    },
-    mounted() {
-    },
-    computed: {
+    }
+  },
+  created() {
+    this.competitionFrom.id = sessionStorage.getItem('id')
+    this.competitionFrom.name = sessionStorage.getItem('userName')
+    this.competitionFrom.stuId = sessionStorage.getItem('stuId')
+    this.competitionFrom.competitionType = sessionStorage.getItem('competitionType')
+    this.competitionFrom.competitionName = sessionStorage.getItem('competitionName')
+    this.competitionFrom.competitionState = sessionStorage.getItem('competitionState')
+    this.competitionFrom.ranking = sessionStorage.getItem('ranking')
+    this.competitionFrom.totalNumber = sessionStorage.getItem('totalNumber')
+    this.competitionFrom.competitionPrize = sessionStorage.getItem('competitionPrize')
+    this.competitionFrom.competitionLevel = sessionStorage.getItem('competitionLevel')
+    this.competitionFrom.teacher = sessionStorage.getItem('teacher')
+    this.competitionFrom.getDate = sessionStorage.getItem('getDate')
+    
+  },
+  computed: {
       fileForm4() {
         return {fileName: this.competitionFrom.stuId +"_"+ this.competitionFrom.competitionName, isFront: 4}
       },
     },
-    methods: {
-      addHonor(competitionFrom) {
-        this.$refs[competitionFrom].validate((valid) => {
-          if (valid) {
-            if (this.competitionFrom.name == '') {
-              this.$message.warning("请完善信息！")
-              return
-            }
-            if (this.competitionFrom.proofMaterialId == '') {
-              this.$message.warning("请上传佐证材料")
-              return
-            }
-            this.$http.EditCompetition(this.competitionFrom).then((result) => {
-              if (result.c === 200) {
-                this.$message({
-                  message: '添加成功！',
-                  type: 'success'
-                });
-                this.competitionFrom.competitionType = ''
-                this.competitionFrom.competitionName = ''
-                this.competitionFrom.ranking = ''
-                this.competitionFrom.totalNumber = ''
-                this.competitionFrom.competitionState = ''
-                this.competitionFrom.competitionPrize = ''
-                this.competitionFrom.competitionLevel = ''
-                this.competitionFrom.getDate = ''
-                this.competitionFrom.teacher = ''
-                this.competitionFrom.proofMaterialId = ''
-                this.$emit('flushQuery')
-                this.fileList = []
-                this.dialogLoginVisible = false
-              } else {
-                this.$message.warning(result.r)
-              }
-            }, (err) => {
-              this.$message.error(err.msg)
-            })
-          } else {
-            this.$message.warning("请完善信息！")
+  methods: {
+    cencel() {
+      this.$router.push({name: 'Center', params:{tagP: 'competitionCenter'}})
+    },
+    modify(competitionFrom) {
+      this.$refs[competitionFrom].validate((valid) => {
+        if (valid) {
+          if (this.competitionFrom.proofMaterialId == '') {
+            this.$message.warning("请上传佐证材料")
+            return
           }
+          this.$http.EditCompetition(this.competitionFrom).then((result) => {
+            if (result.c === 200) {
+              this.$message({
+                message: '修改成功！',
+                type: 'success'
+              });
+              this.$emit('flushQuery')
+              this.$router.push({name: 'Center', params:{tagP: 'competitionCenter'}})
+            } else {
+              this.$message.warning(result.r)
+            }
+          }, (err) => {
+            this.$message.error(err.msg)
+          })
+        } else {
+          this.$message.warning("请完善信息！")
+        }
+      })
+    },
+    deletes() {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.DeleCompetition(this.competitionFrom.id).then((result) => {
+          if (result.c === 200) {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+            this.$emit('flushQuery')
+            this.$router.push({name: 'Center', params:{tagP: 'competitionCenter'}})
+          } else {
+            this.$message.warning(result.r)
+          }
+        }, (err) => {
+          this.$message.error(err.msg)
         })
-      },
-      submitUpload() {
-         this.competitionFrom.proofMaterialId = this.competitionFrom.stuId +"_"+ this.competitionFrom.competitionName+ "_4.pdf"
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
+
+    },
+    submitUpload() {
+    this.competitionFrom.proofMaterialId = this.competitionFrom.stuId +"_"+ this.competitionFrom.competitionName+ "_4.pdf"
         this.$refs.upload.submit();
       },
       handleRemove(file, fileList) {
       },
       handlePreview(file) {
-      }
-    }
+      },
+      createCode(){
+           var code = "";    
+           var codeLength = 4;//验证码的长度   
+           var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',   
+                       'S','T','U','V','W','X','Y','Z');//随机数   
+           for(var i = 0; i < codeLength; i++) {
+                 //循环操作   
+                 var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）   
+                 code += random[index];//根据索引取得随机数加到code上   
+           }   
+          this.checkCode = code;
+      },
   }
-
+}
 </script>
 
 <style scoped>
-.content {
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	horiz-align: center;
-	white-space: nowrap;
-	margin: 0;
-}
+  .lab-main{
+    min-height: 530px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .content {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    horiz-align: center;
+    white-space: nowrap;
+    margin: 0;
+    border:1px solid #999999;
+    margin-top: 50px;
+  }
 </style>

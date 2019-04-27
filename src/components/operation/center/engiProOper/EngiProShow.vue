@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <b class="linked" @click="dialogLoginVisible = true">
-      <el-button type="info" plain icon="el-icon-plus" size="mini"></el-button>
-    </b>
-    <el-dialog width="720px" title="添加工程项目" :visible.sync="dialogLoginVisible" class="content">
-      <div style="width: 100%; margin-left: -15px">
+  <div class="lab-main">
+    <div class="content">
+      <br>
       <el-form :inline="true" :model="engiProFrom" :rules="rules" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="姓名" prop="name">
           <el-input v-model="engiProFrom.name" placeholder="姓名" readonly="true"></el-input>
@@ -85,39 +82,39 @@
         </el-form-item>        
       </el-form>
       <br>
+      <br>
       <el-upload
         class="upload-demo"
         ref="upload"
         action="/api/file/upload"
         :data="fileForm4"
-        :limit = 1
         :on-preview="handlePreview"
         :on-remove="handleRemove"
+        :limit = 1
         :file-list="fileList"
         :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
         <div slot="tip" class="el-upload__tip">只能上传pdf文件,请将表单信息填好之后上传文件</div>
       </el-upload>
+      <br><br><br>
+      <el-form label-width="70px" :model="engiProFrom">
+        <el-form-item style="margin-left: -40px">
+          <el-button style="width: 100px" @click="deletes" type="warning">删除</el-button>
+          <el-button style="width: 100px" @click="modify('engiProFrom')" type="info">确定</el-button>
+          <el-button style="width: 100px" @click="cencel">返回</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <br><br>
-    <div style="margin: 0 auto">
-      <el-row>
-        <el-button style="width: 120px" @click="dialogLoginVisible = false, fileList = []">取消</el-button>
-        <el-button type="info" style="width: 120px" @click="addHonor('engiProFrom')">增加</el-button>
-      </el-row>
-    </div>
-    </el-dialog>
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'AddEngiPro',
-    data() {
-      return {
-        dialogLoginVisible: false,
+
+export default {
+  name: 'OrderCenter',
+  data() {
+    return {
         fileList: [],
         engiProFrom: {
           stuId: sessionStorage.getItem('userId'),
@@ -203,82 +200,113 @@
             {required: true, message: '指导老师不能为空', trigger: 'blur'},
           ]
         },
-        checkCode: '',
-      }
-    },
-    created(){
-    },
-    mounted() {
-    },
-    computed: {
+    }
+  },
+  created() {
+    this.engiProFrom.id = sessionStorage.getItem('id')
+    this.engiProFrom.name = sessionStorage.getItem('userName')
+    this.engiProFrom.stuId = sessionStorage.getItem('stuId')
+    this.engiProFrom.proName = sessionStorage.getItem('proName')
+    this.engiProFrom.proIntr = sessionStorage.getItem('proIntr')
+    this.engiProFrom.performance = sessionStorage.getItem('performance')
+    this.engiProFrom.ranking = sessionStorage.getItem('ranking')
+    this.engiProFrom.totalNumber = sessionStorage.getItem('totalNumber')
+    this.engiProFrom.work = sessionStorage.getItem('work')
+    this.engiProFrom.proState = sessionStorage.getItem('proState')
+    this.engiProFrom.enterpriseName = sessionStorage.getItem('enterpriseName')
+    this.engiProFrom.enterpriseTeacher = sessionStorage.getItem('enterpriseTeacher')
+    this.engiProFrom.teacher = sessionStorage.getItem('teacher')
+    this.engiProFrom.getDate = sessionStorage.getItem('getDate')
+  },
+  computed: {
       fileForm4() {
         return {fileName: this.engiProFrom.stuId +"_"+ this.engiProFrom.proName, isFront: 7}
       },
     },
-    methods: {
-      addHonor(engiProFrom) {
-        this.$refs[engiProFrom].validate((valid) => {
-          if (valid) {
-            if (this.engiProFrom.name == '') {
-              this.$message.warning("请完善信息！")
-              return
-            }
-            if (this.engiProFrom.proofMaterialId == '') {
+  methods: {
+    cencel() {
+      this.$router.push({name: 'Center', params:{tagP: 'engiProCenter'}})
+    },
+    modify(engiProFrom) {
+      this.$refs[engiProFrom].validate((valid) => {
+        if (valid) {
+          if (this.engiProFrom.proofMaterialId == '') {
             this.$message.warning("请上传佐证材料")
             return
-            }
-            this.$http.EditEngiPro(this.engiProFrom).then((result) => {
-              if (result.c === 200) {
-                this.$message({
-                  message: '添加成功！',
-                  type: 'success'
-                });
-                this.engiProFrom.performance = ''
-                this.engiProFrom.proName = ''
-                this.engiProFrom.proIntr = ''
-                this.engiProFrom.ranking = ''
-                this.engiProFrom.totalNumber = ''
-                this.engiProFrom.proState = ''
-                this.engiProFrom.work = ''
-                this.engiProFrom.enterpriseName = ''
-                this.engiProFrom.enterpriseTeacher = ''
-                this.engiProFrom.getDate = ''
-                this.engiProFrom.teacher = ''
-                this.engiProFrom.proofMaterialId = ''
-                this.$emit('flushQuery')
-                this.fileList = []
-                this.dialogLoginVisible = false
-              } else {
-                this.$message.warning(result.r)
-              }
-            }, (err) => {
-              this.$message.error(err.msg)
-            })
-          } else {
-            this.$message.warning("请完善信息！")
           }
+          this.$http.EditEngiPro(this.engiProFrom).then((result) => {
+            if (result.c === 200) {
+              this.$message({
+                message: '修改成功！',
+                type: 'success'
+              });
+              this.$emit('flushQuery')
+              this.$router.push({name: 'Center', params:{tagP: 'engiProCenter'}})
+            } else {
+              this.$message.warning(result.r)
+            }
+          }, (err) => {
+            this.$message.error(err.msg)
+          })
+        } else {
+          this.$message.warning("请完善信息！")
+        }
+      })
+    },
+    deletes() {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$http.DeleEngiPro(this.engiProFrom.id).then((result) => {
+          if (result.c === 200) {
+            this.$message({
+              message: '删除成功',
+              type: 'success'
+            });
+            this.$emit('flushQuery')
+            this.$router.push({name: 'Center', params:{tagP: 'engiProCenter'}})
+          } else {
+            this.$message.warning(result.r)
+          }
+        }, (err) => {
+          this.$message.error(err.msg)
         })
-      },
-      submitUpload() {
-        this.$refs.upload.submit();
-        this.engiProFrom.proofMaterialId = this.engiProFrom.stuId +"_"+ this.engiProFrom.proName+ "_7.pdf"
-      },
-      handleRemove(file, fileList) {
-      },
-      handlePreview(file) {
-      }
-    }
-  }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });          
+      });
 
+    },
+    submitUpload() {
+      this.engiProFrom.proofMaterialId = this.engiProFrom.stuId +"_"+ this.engiProFrom.proName+ "_7.pdf"
+      this.$refs.upload.submit();
+    },
+    handleRemove(file, fileList) {
+    },
+    handlePreview(file) {
+    },
+  }
+}
 </script>
 
 <style scoped>
-.content {
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	horiz-align: center;
-	white-space: nowrap;
-	margin: 0;
-}
+  .lab-main{
+    min-height: 530px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .content {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    horiz-align: center;
+    white-space: nowrap;
+    margin: 0;
+    border:1px solid #999999;
+    margin-top: 50px;
+  }
 </style>

@@ -80,11 +80,12 @@
         :data="fileForm2"
         :on-preview="handlePreview"
         :on-remove="handleRemove"
+        :limit = 1
         :file-list="fileList"
         :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg文件，且不超过500kb，请将表单信息填好之后上传文件</div>
+        <div slot="tip" class="el-upload__tip">只能上传pdf文件,请将表单信息填好之后上传文件</div>
       </el-upload>
     </div>
     
@@ -208,13 +209,15 @@
     methods: {
       addHonor(paperFrom) {
         this.$refs[paperFrom].validate((valid) => {
-          console.log(this.paperFrom)
           if (valid) {
             if (this.paperFrom.name == '') {
               this.$message.warning("请完善信息！")
               return
             }
-            this.paperFrom.proofMaterialId = this.paperFrom.stuId +"_"+ this.paperFrom.paperTitle + "_2.jpg"
+            if (this.paperFrom.proofMaterialId == '') {
+              this.$message.warning("请上传佐证材料")
+              return
+            }
             this.$http.EditPaper(this.paperFrom).then((result) => {
               if (result.c === 200) {
                 this.$message({
@@ -241,6 +244,7 @@
         })
       },
       submitUpload() {
+        this.paperFrom.proofMaterialId = this.paperFrom.stuId +"_"+ this.paperFrom.paperTitle + "_2.pdf"
         this.$refs.upload.submit();
       },
       handleRemove(file, fileList) {

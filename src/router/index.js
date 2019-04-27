@@ -5,10 +5,16 @@ import Register from '@/authorize/Register'
 import ForgotPass from '@/authorize/ForgotPass'
 import UserCenter from '@/authorize/UserCenter'
 import Center from '@/components/operation/Center'
-// import LabShow from '@/components/operation/center/labOper/LabShow'
-// import LabBeSpeak from '@/components/operation/center/labOper/LabBeSpeak'
-// import OrderShow from '@/components/operation/center/orderOper/OrderShow'
-// import OrderEdit from '@/components/operation/center/orderOper/OrderEdit'
+import HonorShow from '@/components/operation/center/honorOper/HonorShow'
+import PaperShow from '@/components/operation/center/paperOper/PaperShow'
+import PatentShow from '@/components/operation/center/patentOper/PatentShow'
+import AcadExchShow from '@/components/operation/center/acadExchOper/AcadExchShow'
+import CompetitionShow from '@/components/operation/center/competitionOper/CompetitionShow'
+import EngiProShow from '@/components/operation/center/engiProOper/EngiProShow'
+import EntrProShow from '@/components/operation/center/entrProOper/EntrProShow'
+import InnoProShow from '@/components/operation/center/innoProOper/InnoProShow'
+import MasterPaperShow from '@/components/operation/center/masterPaperOper/MasterPaperShow'
+import WorkShow from '@/components/operation/center/workOper/WorkShow'
 
 Vue.use(Router)
 
@@ -40,24 +46,68 @@ const router = new Router({
       component: Center,
       meta: {authRequired: true}
     },
-    // {      
-    //   path: '/labshow',
-    //   name: 'LabShow',
-    //   component: LabShow,
-    //   meta: {authRequired: true}
-    // },
-    // {      
-    //   path: '/labbespeak',
-    //   name: 'LabBeSpeak',
-    //   component: LabBeSpeak,
-    //   meta: {authRequired: true}
-    // },
-    // {     
-    //   path: '/ordershow',
-    //   name: 'OrderShow',
-    //   component: OrderShow,
-    //   meta: {authRequired: true}
-    // },
+    {      
+      path: '/honorshow',
+      name: 'HonorShow',
+      component: HonorShow,
+      meta: {authRequired: true}
+    },
+    {      
+      path: '/paperShow',
+      name: 'PaperShow',
+      component: PaperShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/patentshow',
+      name: 'PatentShow',
+      component: PatentShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/acadExchShow',
+      name: 'AcadExchShow',
+      component: AcadExchShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/competitionShow',
+      name: 'CompetitionShow',
+      component: CompetitionShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/engiProShow',
+      name: 'EngiProShow',
+      component: EngiProShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/entrProShow',
+      name: 'EntrProShow',
+      component: EntrProShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/innoProShow',
+      name: 'InnoProShow',
+      component: InnoProShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/masterPaperShow',
+      name: 'MasterPaperShow',
+      component: MasterPaperShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/workShow',
+      name: 'WorkShow',
+      component: WorkShow,
+      meta: {authRequired: true}
+    },
+
+
     // {     
     //   path: '/orderedit',
     //   name: 'OrderEdit',

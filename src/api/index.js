@@ -113,6 +113,9 @@ export default {
   ShowHonors(params){
     return fetch('/prize/getHonors', params)
   },
+  DeleHonor(params){
+    return fetch('/prize/deleHonor', params)
+  },
   GetAllPrizes(params){
     return fetch('/prize/getPrizes', params)
   },
@@ -122,11 +125,17 @@ export default {
   ShowPapers(params){
     return fetch('/prize/getPapers', params)
   },
+  DelePaper(params){
+    return fetch('/prize/delePaper', params)
+  },
   EditPatent(params){
     return fetch('/prize/editPatent', params)
   },
   ShowPatents(params){
     return fetch('/prize/getPatents', params)
+  },
+  DelePatent(params){
+    return fetch('/prize/delePatent', params)
   },
   EditCompetition(params){
     return fetch('/prize/editCompetition', params)
@@ -134,11 +143,17 @@ export default {
   ShowCompetitions(params){
     return fetch('/prize/getCompetitions', params)
   },
+  DeleCompetition(params){
+    return fetch('/prize/deleCompetition', params)
+  },
   EditInnoPro(params){
     return fetch('/prize/editInnoPro', params)
   },
   ShowInnoPros(params){
     return fetch('/prize/getInnoPros', params)
+  },
+  DeleInnoPro(params){
+    return fetch('/prize/deleInnoPro', params)
   },
   EditEntrPro(params){
     return fetch('/prize/editEntrPro', params)
@@ -146,11 +161,17 @@ export default {
   ShowEntrPros(params){
     return fetch('/prize/getEntrPros', params)
   },
+  DeleEntrPro(params){
+    return fetch('/prize/deleEntrPro', params)
+  },
   EditEngiPro(params){
     return fetch('/prize/editEngiPro', params)
   },
   ShowEngiPros(params){
     return fetch('/prize/getEngiPros', params)
+  },
+  DeleEngiPro(params){
+    return fetch('/prize/deleEngiPro', params)
   },
   EditAcadExch(params){
     return fetch('/prize/editAcadExch', params)
@@ -158,17 +179,26 @@ export default {
   ShowAcadExchs(params){
     return fetch('/prize/getAcadExchs', params)
   },
+  DeleAcadExch(params){
+    return fetch('/prize/deleAcadExch', params)
+  },
   EditWork(params){
     return fetch('/prize/editWork', params)
   },
   ShowWorks(params){
     return fetch('/prize/getWorks', params)
   },
+  DeleWork(params){
+    return fetch('/prize/deleWork', params)
+  },
   EditMasterPaper(params){
     return fetch('/prize/editMasterPaper', params)
   },
   ShowMasterPapers(params){
     return fetch('/prize/getMasterPapers', params)
+  },
+  DeleMasterPaper(params){
+    return fetch('/prize/deleMasterPaper', params)
   },
 
   DownLoad(params){

@@ -2,16 +2,6 @@
 	<div style="margin: 0 auto">
 		<div style="margin-top: 20px; margin-left: 120px; height: 64px">
 			<el-form :inline="true" :model="queryData" class="demo-form-inline">
-				<!-- <el-form-item>
-					<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange"
-                           :disabled="isDisAble" style="width: 200px">全部
-             		</el-checkbox>
-				</el-form-item>
-				<el-form-item>
-					<el-checkbox-group v-model="checkedIterms" @change="handleCheckedItermsChange" :disabled="isDisAble">
-	                	<el-checkbox v-for="iterm in iterms" :label="iterm" :key="iterm">{{iterm}}</el-checkbox>
-	              	</el-checkbox-group>
-				</el-form-item> -->
 				<el-form-item style="margin-left: 800px">
 					<AddCompetition />
 				</el-form-item>
@@ -19,7 +9,7 @@
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 95%">
 			<el-table :data="competitionData" v-loading="isDisAble">
-				<el-table-column prop="competitionType" label="类型" width="100"></el-table-column>
+				<el-table-column prop="competitionType" label="类型" width="80"></el-table-column>
 				<el-table-column prop="competitionName" label="名称" width="180"></el-table-column>
 				<el-table-column prop="competitionState" label="竞赛状态" width="120"></el-table-column>
 				<el-table-column prop="competitionLevel" label="级别" width="80"></el-table-column>
@@ -30,10 +20,10 @@
 				<el-table-column prop="getDate" label="获奖日期" width="100"></el-table-column>				
 				<el-table-column prop="score" label="得分" width="70"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
-				<el-table-column fixed="right" label="操作" width="100">
+				<el-table-column fixed="right" label="操作" width="140">
 				<template slot-scope="scope">
-					<el-button type="text" size="small" @click="downLoadPro(scope.$index, scope.row)">下载材料</el-button>
-					<!-- <el-button type="text" size="small" @click="beSpeak(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改</el-button> -->
+					<el-button type="text" size="small" @click="showProofMaterial(scope.$index, scope.row)">下载材料</el-button>
+					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改/删除</el-button>
 				</template>
 				</el-table-column>
 			</el-table>
@@ -88,16 +78,23 @@ export default {
 	            this.$message.error(err.msg)
 	        })
 		},
-		downLoadPro(index, row){
-			// var params = {
-			// 	fileName: '15200123_1_1_1—1.jpg'
-			// }
-			// this.$http.DownLoad(params).then((result) => {
-			// 	alert()
-   //        		this.$message.success('下载成功')
-			// }, (err) => {
-	  //           this.$message.error(err.msg)
-	  //       })
+		showProofMaterial(index, row){
+			
+		},
+		showDetails(index, row){
+			sessionStorage.setItem('id', row.id)
+			sessionStorage.setItem('name', row.name)
+			sessionStorage.setItem('stuId', row.stuId)
+			sessionStorage.setItem('competitionType', row.competitionType)
+			sessionStorage.setItem('competitionName', row.competitionName)
+			sessionStorage.setItem('competitionState', row.competitionState)
+			sessionStorage.setItem('ranking', row.ranking)
+			sessionStorage.setItem('totalNumber', row.totalNumber)
+			sessionStorage.setItem('getDate', row.getDate)
+			sessionStorage.setItem('competitionPrize', row.competitionPrize)
+			sessionStorage.setItem('competitionLevel', row.competitionLevel)
+			sessionStorage.setItem('teacher', row.teacher)
+			this.$router.push({name: 'CompetitionShow', params: {orderId: row.id}})
 		},
 	},
 	components: {

@@ -9,24 +9,24 @@
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 95%">
 			<el-table :data="engiProData" v-loading="isDisAble">
-				<el-table-column prop="proName" label="名称" width="130"></el-table-column>
-				<el-table-column prop="proIntr" label="项目简介" width="100"></el-table-column>
-				<el-table-column prop="performance" label="性能指标" width="90"></el-table-column>
-				<el-table-column prop="work" label="所做工作" width="120"></el-table-column>
-				<el-table-column prop="ranking" label="参赛排名" width="50"></el-table-column>
-				<el-table-column prop="totalNumber" label="参赛人数" width="50"></el-table-column>
-				<el-table-column prop="proState" label="项目状态" width="80"></el-table-column>
-				<el-table-column prop="enterpriseName" label="企业名称" width="80"></el-table-column>
+				<el-table-column prop="proName" label="名称" width="150"></el-table-column>
+				<el-table-column prop="proIntr" label="项目简介" width="150"></el-table-column>
+				<el-table-column prop="performance" label="性能指标" width="120"></el-table-column>
+				<el-table-column prop="work" label="所做工作" width="140"></el-table-column>
+				<el-table-column prop="ranking" label="参赛排名" width="80"></el-table-column>
+				<el-table-column prop="totalNumber" label="参赛人数" width="80"></el-table-column>
+				<el-table-column prop="proState" label="项目状态" width="120"></el-table-column>
+				<el-table-column prop="enterpriseName" label="企业名称" width="140"></el-table-column>
 				<el-table-column prop="enterpriseTeacher" label="企业导师" width="80"></el-table-column>
 				<el-table-column prop="teacher" label="指导老师" width="80"></el-table-column>
 				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
 				<!-- <el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	 -->
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
-				<el-table-column fixed="right" label="操作" width="100">
+				<el-table-column fixed="right" label="操作" width="140">
 				<template slot-scope="scope">
-					<el-button type="text" size="small" @click="downLoadPro(scope.$index, scope.row)">下载材料</el-button>
-					<!-- <el-button type="text" size="small" @click="beSpeak(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改</el-button> -->
+					<el-button type="text" size="small" @click="showProofMaterial(scope.$index, scope.row)">下载材料</el-button>
+					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改/删除</el-button>
 				</template>
 				</el-table-column>
 			</el-table>
@@ -83,16 +83,25 @@ export default {
 	            this.$message.error(err.msg)
 	        })
 		},
-		downLoadPro(index, row){
-			// var params = {
-			// 	fileName: '15200123_1_1_1—1.jpg'
-			// }
-			// this.$http.DownLoad(params).then((result) => {
-			// 	alert()
-   //        		this.$message.success('下载成功')
-			// }, (err) => {
-	  //           this.$message.error(err.msg)
-	  //       })
+		showProofMaterial(index, row){
+			
+		},
+		showDetails(index, row){
+			sessionStorage.setItem('id', row.id)
+			sessionStorage.setItem('name', row.name)
+			sessionStorage.setItem('stuId', row.stuId)
+			sessionStorage.setItem('proName', row.proName)
+			sessionStorage.setItem('proIntr', row.proIntr)
+			sessionStorage.setItem('performance', row.performance)
+			sessionStorage.setItem('work', row.work)			
+			sessionStorage.setItem('ranking', row.ranking)
+			sessionStorage.setItem('totalNumber', row.totalNumber)			
+			sessionStorage.setItem('proState', row.proState)
+			sessionStorage.setItem('enterpriseName', row.enterpriseName)			
+			sessionStorage.setItem('enterpriseTeacher', row.enterpriseTeacher)
+			sessionStorage.setItem('getDate', row.getDate)
+			sessionStorage.setItem('teacher', row.teacher)
+			this.$router.push({name: 'EngiProShow', params: {orderId: row.id}})
 		},
 	},
 	components: {

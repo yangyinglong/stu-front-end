@@ -9,22 +9,22 @@
 		</div>
 		<div style="margin-left: 20px; min-height: 465px; width: 95%">
 			<el-table :data="masterPaperData" v-loading="isDisAble">
-				<el-table-column prop="paperName" label="题目" width="130"></el-table-column>
-				<el-table-column prop="paperAbstract" label="摘要" width="110"></el-table-column>
+				<el-table-column prop="paperName" label="题目" width="200"></el-table-column>
+				<el-table-column prop="paperAbstract" label="摘要" width="200"></el-table-column>
 				<el-table-column prop="score1" label="外审成绩1" width="90"></el-table-column>
-				<el-table-column prop="sugg1" label="外审意见1" width="120"></el-table-column>
+				<el-table-column prop="sugg1" label="外审意见1" width="180"></el-table-column>
 				<el-table-column prop="score2" label="外审成绩2" width="90"></el-table-column>
-				<el-table-column prop="sugg2" label="外审意见2" width="120"></el-table-column>
+				<el-table-column prop="sugg2" label="外审意见2" width="180"></el-table-column>
 				<el-table-column prop="score3" label="答辩成绩" width="90"></el-table-column>
-				<el-table-column prop="sugg3" label="答辩意见" width="120"></el-table-column>
+				<el-table-column prop="sugg3" label="答辩意见" width="180"></el-table-column>
 				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
 				<!-- <el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	 -->
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
-				<el-table-column fixed="right" label="操作" width="100">
+				<el-table-column fixed="right" label="操作" width="140">
 				<template slot-scope="scope">
-					<el-button type="text" size="small" @click="downLoadPro(scope.$index, scope.row)">下载材料</el-button>
-					<!-- <el-button type="text" size="small" @click="beSpeak(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改</el-button> -->
+					<el-button type="text" size="small" @click="showProofMaterial(scope.$index, scope.row)">下载材料</el-button>
+					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改/删除</el-button>
 				</template>
 				</el-table-column>
 			</el-table>
@@ -79,16 +79,24 @@ export default {
 	            this.$message.error(err.msg)
 	        })
 		},
-		downLoadPro(index, row){
-			// var params = {
-			// 	fileName: '15200123_1_1_1—1.jpg'
-			// }
-			// this.$http.DownLoad(params).then((result) => {
-			// 	alert()
-   //        		this.$message.success('下载成功')
-			// }, (err) => {
-	  //           this.$message.error(err.msg)
-	  //       })
+		showProofMaterial(index, row){
+			
+		},
+		showDetails(index, row){
+			sessionStorage.setItem('id', row.id)
+			sessionStorage.setItem('name', row.name)
+			sessionStorage.setItem('stuId', row.stuId)
+			sessionStorage.setItem('paperName', row.paperName)
+			sessionStorage.setItem('paperAbstract', row.paperAbstract)
+			sessionStorage.setItem('proState', row.proState)
+			sessionStorage.setItem('score1', row.score1)
+			sessionStorage.setItem('sugg1', row.sugg1)
+			sessionStorage.setItem('score2', row.score2)
+			sessionStorage.setItem('sugg2', row.sugg2)
+			sessionStorage.setItem('score3', row.score3)
+			sessionStorage.setItem('sugg3', row.sugg3)			
+			sessionStorage.setItem('getDate', row.getDate)
+			this.$router.push({name: 'MasterPaperShow', params: {orderId: row.id}})
 		},
 	},
 	components: {

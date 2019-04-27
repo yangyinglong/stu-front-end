@@ -27,10 +27,10 @@
 				<el-table-column prop="getDate" label="时间" width="100"></el-table-column>
 				<el-table-column prop="score" label="得分" width="100"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
-				<el-table-column fixed="right" label="操作" width="100">
+				<el-table-column fixed="right" label="操作" width="140">
 				<template slot-scope="scope">
-					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)">查看</el-button>
-					<el-button type="text" size="small" @click="beSpeak(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改</el-button>
+					<el-button type="text" size="small" @click="showProofMaterial(scope.$index, scope.row)">下载材料</el-button>
+					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改/删除</el-button>
 				</template>
 				</el-table-column>
 			</el-table>
@@ -80,7 +80,22 @@ export default {
 			}, (err) => {
 	            this.$message.error(err.msg)
 	        })
-		}
+		},
+		showProofMaterial(index, row){
+			
+		},
+		showDetails(index, row){
+			sessionStorage.setItem('id', row.id)
+			sessionStorage.setItem('name', row.name)
+			sessionStorage.setItem('stuId', row.stuId)
+			sessionStorage.setItem('patentName', row.patentName)
+			sessionStorage.setItem('patentType', row.patentType)
+			sessionStorage.setItem('patentState', row.patentState)
+			sessionStorage.setItem('ranking', row.ranking)
+			sessionStorage.setItem('totalNumber', row.totalNumber)
+			sessionStorage.setItem('getDate', row.getDate)
+			this.$router.push({name: 'PatentShow', params: {orderId: row.id}})
+		},
 	},
 	components: {
 		AddPatent

@@ -2,16 +2,6 @@
 	<div style="margin: 0 auto">
 		<div style="margin-top: 20px; margin-left: 120px; height: 64px">
 			<el-form :inline="true" :model="queryData" class="demo-form-inline">
-				<!-- <el-form-item>
-					<el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange"
-                           :disabled="isDisAble" style="width: 200px">全部
-             		</el-checkbox>
-				</el-form-item>
-				<el-form-item>
-					<el-checkbox-group v-model="checkedIterms" @change="handleCheckedItermsChange" :disabled="isDisAble">
-	                	<el-checkbox v-for="iterm in iterms" :label="iterm" :key="iterm">{{iterm}}</el-checkbox>
-	              	</el-checkbox-group>
-				</el-form-item> -->
 				<el-form-item style="margin-left: 800px">
 					<AddPaper />
 				</el-form-item>
@@ -26,12 +16,12 @@
 				<el-table-column prop="totalNumber" label="作者人数" width="80"></el-table-column>
 				<el-table-column prop="paperState" label="论文状态" width="80"></el-table-column>
 				<el-table-column prop="getDate" label="时间" width="100"></el-table-column>
-				<el-table-column prop="score" label="得分" width="100"></el-table-column>
+				<el-table-column prop="score" label="得分" width="70"></el-table-column>
 				<el-table-column prop="status" label="状态" width="70"></el-table-column>
-				<el-table-column fixed="right" label="操作" width="100">
+				<el-table-column fixed="right" label="操作" width="140">
 				<template slot-scope="scope">
-					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)">查看</el-button>
-					<el-button type="text" size="small" @click="beSpeak(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改</el-button>
+					<el-button type="text" size="small" @click="showProofMaterial(scope.$index, scope.row)">下载材料</el-button>
+					<el-button type="text" size="small" @click="showDetails(scope.$index, scope.row)" v-if="scope.row.status== '待审核'">修改/删除</el-button>
 				</template>
 				</el-table-column>
 			</el-table>
@@ -82,7 +72,24 @@ export default {
 			}, (err) => {
 	            this.$message.error(err.msg)
 	        })
-		}
+		},
+		showProofMaterial(index, row){
+			
+		},
+		showDetails(index, row){
+			sessionStorage.setItem('id', row.id)
+			sessionStorage.setItem('name', sessionStorage.getItem("userName"))
+			sessionStorage.setItem('stuId', row.stuId)
+			sessionStorage.setItem('paperTitle', row.paperTitle)
+			sessionStorage.setItem('paperGrade', row.paperGrade)
+			sessionStorage.setItem('journalTitle', row.journalTitle)
+			sessionStorage.setItem('ranking', row.ranking)
+			sessionStorage.setItem('totalNumber', row.totalNumber)
+			sessionStorage.setItem('paperState', row.paperState)
+			sessionStorage.setItem('getDate', row.getDate)
+			sessionStorage.setItem('status', row.status)
+			this.$router.push({name: 'PaperShow', params: {orderId: row.id}})
+		},
 	},
 	components: {
 		AddPaper
