@@ -69,7 +69,7 @@ export default {
 	        })
 		},
 		showProofMaterial(index, row){
-			
+			window.open('http://129.204.15.161:7070/api/file/downloadFile?fileName=' + row.proofMaterialId)
 		},
 		showDetails(index, row){
 			sessionStorage.setItem('id', row.id)
