@@ -113,7 +113,7 @@ export default {
       },
       honorTypes: [{
           value: 1,
-          label: "本科生奖学金"
+          label: "国家奖学金"
         },{
           value: 2,
           label: "研究生奖学金"
@@ -123,9 +123,6 @@ export default {
         },{
           value: 4,
           label: "优秀毕业生"
-        },{
-          value: 5,
-          label: "三好学生"
         },{
           value: 6,
           label: "优秀班干部"
@@ -190,7 +187,7 @@ export default {
     this.honorFrom.stuId = sessionStorage.getItem('stuId')
     this.honorFrom.getDate = sessionStorage.getItem('getDate')
 
-    if (sessionStorage.getItem('honorType') == "本科生奖学金") {
+    if (sessionStorage.getItem('honorType') == "国家奖学金") {
       this.honorFrom.honorType = 1
     } else if (sessionStorage.getItem('honorType') == "研究生奖学金") {
       this.honorFrom.honorType = 2

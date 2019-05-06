@@ -47,7 +47,7 @@
       </el-form>
       <br>
       <br>
-      <el-upload
+      <!-- <el-upload
         class="upload-demo"
         ref="upload"
         action="/api/file/upload"
@@ -60,7 +60,7 @@
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
         <div slot="tip" class="el-upload__tip">只能上传pdf文件,请将表单信息填好之后上传文件</div>
-      </el-upload>
+      </el-upload> -->
       <br><br><br>
       <el-form label-width="70px" :model="workFrom">
         <el-form-item style="margin-left: -40px">
@@ -155,10 +155,10 @@ export default {
     modify(workFrom) {
       this.$refs[workFrom].validate((valid) => {
         if (valid) {
-          if (this.workFrom.proofMaterialId == '') {
-            this.$message.warning("请上传佐证材料")
-            return
-          }
+          // if (this.workFrom.proofMaterialId == '') {
+          //   this.$message.warning("请上传佐证材料")
+          //   return
+          // }
           this.$http.EditWork(this.workFrom).then((result) => {
             if (result.c === 200) {
               this.$message({

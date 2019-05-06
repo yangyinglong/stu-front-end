@@ -52,7 +52,7 @@
       </el-form>
       <br>
       <el-form :inline="true" :model="patentFrom" :rules="rules" ref="patentFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="获奖日期" prop="getDate">
+        <el-form-item label="日期" prop="getDate">
           <div class="block">
               <el-date-picker
                 v-model="patentFrom.getDate"

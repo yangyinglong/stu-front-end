@@ -67,10 +67,10 @@
       </el-form>
       <br>
       <el-form :inline="true" :model="engiProFrom" :rules="rules" ref="engiProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="指导老师" prop="teacher">
+        <el-form-item label="校内导师" prop="teacher">
           <el-input v-model="engiProFrom.teacher" placeholder="指导老师"></el-input>
         </el-form-item>
-        <el-form-item label="获奖日期" prop="getDate">
+        <el-form-item label="日期" prop="getDate">
           <div class="block">
               <el-date-picker
                 v-model="engiProFrom.getDate"

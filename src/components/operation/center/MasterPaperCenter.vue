@@ -12,11 +12,12 @@
 				<el-table-column prop="paperName" label="题目" width="200"></el-table-column>
 				<el-table-column prop="paperAbstract" label="摘要" width="200"></el-table-column>
 				<el-table-column prop="score1" label="外审成绩1" width="90"></el-table-column>
-				<el-table-column prop="sugg1" label="外审意见1" width="180"></el-table-column>
+				<!-- <el-table-column prop="sugg1" label="外审意见1" width="180"></el-table-column> -->
 				<el-table-column prop="score2" label="外审成绩2" width="90"></el-table-column>
-				<el-table-column prop="sugg2" label="外审意见2" width="180"></el-table-column>
+				<!-- <el-table-column prop="sugg2" label="外审意见2" width="180"></el-table-column> -->
+				<el-table-column prop="score4" label="加送外审成绩" width="90"></el-table-column>
 				<el-table-column prop="score3" label="答辩成绩" width="90"></el-table-column>
-				<el-table-column prop="sugg3" label="答辩意见" width="180"></el-table-column>
+				<!-- <el-table-column prop="sugg3" label="答辩意见" width="180"></el-table-column> -->
 				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
 				<!-- <el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	 -->
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>
@@ -52,6 +53,7 @@ export default {
 					sugg2: '二审意见',
 					score3: 'A',
 					sugg3: '答辩意见',
+					score4: 'A',
 					getDate: '2018-12-13',
 	        		status: '待审核',
 	        		score: 0,
@@ -94,6 +96,7 @@ export default {
 			sessionStorage.setItem('score2', row.score2)
 			sessionStorage.setItem('sugg2', row.sugg2)
 			sessionStorage.setItem('score3', row.score3)
+			sessionStorage.setItem('score4', row.score4)
 			sessionStorage.setItem('sugg3', row.sugg3)			
 			sessionStorage.setItem('getDate', row.getDate)
 			this.$router.push({name: 'MasterPaperShow', params: {orderId: row.id}})

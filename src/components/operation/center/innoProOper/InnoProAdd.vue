@@ -64,11 +64,11 @@
       </el-form>
       <br>
       <el-form :inline="true" :model="innoProFrom" :rules="rules" ref="innoProFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="参赛排名" prop="ranking">
-          <el-input v-model="innoProFrom.ranking" placeholder="参赛排名"></el-input>
+        <el-form-item label="参与排名" prop="ranking">
+          <el-input v-model="innoProFrom.ranking" placeholder="参与排名"></el-input>
         </el-form-item>
-        <el-form-item label="参赛人数" prop="totalNumber">
-          <el-input v-model="innoProFrom.totalNumber" placeholder="参赛人数"></el-input>
+        <el-form-item label="参与人数" prop="totalNumber">
+          <el-input v-model="innoProFrom.totalNumber" placeholder="参与人数"></el-input>
         </el-form-item>
       </el-form>
       <br>
@@ -76,7 +76,7 @@
         <el-form-item label="指导老师" prop="teacher">
           <el-input v-model="innoProFrom.teacher" placeholder="指导老师"></el-input>
         </el-form-item>
-        <el-form-item label="获奖日期" prop="getDate">
+        <el-form-item label="日期" prop="getDate">
           <div class="block">
               <el-date-picker
                 v-model="innoProFrom.getDate"

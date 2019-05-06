@@ -31,10 +31,10 @@
           <el-input v-model="masterPaperFrom.score1" placeholder="外审成绩1" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <!-- <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="外审意见1" prop="sugg1">
           <el-input v-model="masterPaperFrom.sugg1" placeholder="外审意见1" style="width: 525px"></el-input>
-        </el-form-item>   
+        </el-form-item>   --> 
       </el-form>
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
@@ -42,25 +42,31 @@
           <el-input v-model="masterPaperFrom.score2" placeholder="外审成绩2" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <!-- <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="外审意见2" prop="sugg2">
           <el-input v-model="masterPaperFrom.sugg2" placeholder="外审意见2" style="width: 525px"></el-input>
         </el-form-item>   
-      </el-form>
+      </el-form> -->
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="外审成绩" prop="score3">
-          <el-input v-model="masterPaperFrom.score3" placeholder="外审成绩" style="width: 525px"></el-input>
-        </el-form-item>   
-      </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="外审意见" prop="sugg3">
-          <el-input v-model="masterPaperFrom.sugg3" placeholder="外审意见" style="width: 525px"></el-input>
+        <el-form-item label="加送外审成绩">
+          <el-input v-model="masterPaperFrom.score4" placeholder="加送外审成绩" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="获奖日期" prop="getDate">
+        <el-form-item label="答辩成绩" prop="score3">
+          <el-input v-model="masterPaperFrom.score3" placeholder="答辩成绩" style="width: 525px"></el-input>
+        </el-form-item>   
+      </el-form>
+       <!-- <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+        <el-form-item label="答辩意见" prop="sugg3">
+          <el-input v-model="masterPaperFrom.sugg3" placeholder="答辩意见" style="width: 525px"></el-input>
+        </el-form-item>   
+      </el-form> -->
+      <br>
+      <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+        <el-form-item label="日期" prop="getDate">
           <div class="block">
               <el-date-picker
                 v-model="masterPaperFrom.getDate"
@@ -116,6 +122,7 @@
           score2: '',
           sugg2: '',
           score3: '',
+          score4: '',
           sugg3: '',
           getDate: '',
           proofMaterialId: ''
@@ -134,21 +141,21 @@
           score1: [
             {required: true, message: '外审成绩1不能为空，可填无', trigger: 'blur'},
           ],
-          sugg1: [
-            {required: true, message: '外审建议1不能为空，可填无', trigger: 'blur'},
-          ],
+          // sugg1: [
+          //   {required: true, message: '外审建议1不能为空，可填无', trigger: 'blur'},
+          // ],
           score2: [
             {required: true, message: '外审成绩2不能为空，可填无', trigger: 'blur'},
           ],
-          sugg2: [
-            {required: true, message: '外审建议2不能为空，可填无', trigger: 'blur'},
-          ],
+          // sugg2: [
+          //   {required: true, message: '外审建议2不能为空，可填无', trigger: 'blur'},
+          // ],
           score3: [
             {required: true, message: '外审成绩不能为空，可填无', trigger: 'blur'},
           ],
-          sugg3: [
-            {required: true, message: '外审建议不能为空，可填无', trigger: 'blur'},
-          ],
+          // sugg3: [
+          //   {required: true, message: '外审建议不能为空，可填无', trigger: 'blur'},
+          // ],
           getDate: [
             {required: true, message: '时间不能为空', trigger: 'blur'},
           ],

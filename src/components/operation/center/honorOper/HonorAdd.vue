@@ -109,7 +109,7 @@
         },
         honorTypes: [{
           value: 1,
-          label: "本科生奖学金"
+          label: "国家奖学金"
         },{
           value: 2,
           label: "研究生奖学金"
@@ -119,9 +119,6 @@
         },{
           value: 4,
           label: "优秀毕业生"
-        },{
-          value: 5,
-          label: "三好学生"
         },{
           value: 6,
           label: "优秀班干部"
@@ -197,10 +194,10 @@
               this.$message.warning("请完善信息！")
               return
             }
-            if (this.honorFrom.proofMaterialId == '') {
-              this.$message.warning("请上传佐证材料")
-              return
-            }
+            // if (this.honorFrom.proofMaterialId == '') {
+            //   this.$message.warning("请上传佐证材料")
+            //   return
+            // }
             this.$http.EditHonor(this.honorFrom).then((result) => {
               if (result.c === 200) {
                 this.$message({

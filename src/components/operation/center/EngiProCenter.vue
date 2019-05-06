@@ -18,7 +18,7 @@
 				<el-table-column prop="proState" label="项目状态" width="120"></el-table-column>
 				<el-table-column prop="enterpriseName" label="企业名称" width="140"></el-table-column>
 				<el-table-column prop="enterpriseTeacher" label="企业导师" width="80"></el-table-column>
-				<el-table-column prop="teacher" label="指导老师" width="80"></el-table-column>
+				<el-table-column prop="teacher" label="校内导师" width="80"></el-table-column>
 				<el-table-column prop="getDate" label="日期" width="100"></el-table-column>
 				<!-- <el-table-column prop="proResult" label="项目成果" width="120"></el-table-column>	 -->
 				<el-table-column prop="score" label="得分" width="50"></el-table-column>

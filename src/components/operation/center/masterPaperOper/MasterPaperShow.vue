@@ -28,36 +28,42 @@
           <el-input v-model="masterPaperFrom.score1" placeholder="外审成绩1" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <!--  <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="外审意见1" prop="sugg1">
           <el-input v-model="masterPaperFrom.sugg1" placeholder="外审意见1" style="width: 525px"></el-input>
         </el-form-item>   
-      </el-form>
+      </el-form> -->
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="外审成绩2" prop="score2">
           <el-input v-model="masterPaperFrom.score2" placeholder="外审成绩2" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+      <br>
+      <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+        <el-form-item label="加送外审成绩">
+          <el-input v-model="masterPaperFrom.score4" placeholder="加送外审成绩" style="width: 525px"></el-input>
+        </el-form-item>   
+      </el-form>
+      <!--  <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
         <el-form-item label="外审意见2" prop="sugg2">
           <el-input v-model="masterPaperFrom.sugg2" placeholder="外审意见2" style="width: 525px"></el-input>
         </el-form-item>   
-      </el-form>
+      </el-form> -->
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="外审成绩" prop="score3">
-          <el-input v-model="masterPaperFrom.score3" placeholder="外审成绩" style="width: 525px"></el-input>
+        <el-form-item label="答辩成绩" prop="score3">
+          <el-input v-model="masterPaperFrom.score3" placeholder="答辩成绩" style="width: 525px"></el-input>
         </el-form-item>   
       </el-form>
-       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="外审意见" prop="sugg3">
-          <el-input v-model="masterPaperFrom.sugg3" placeholder="外审意见" style="width: 525px"></el-input>
+       <!-- <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+        <el-form-item label="答辩意见" prop="sugg3">
+          <el-input v-model="masterPaperFrom.sugg3" placeholder="答辩意见" style="width: 525px"></el-input>
         </el-form-item>   
-      </el-form>
+      </el-form> -->
       <br>
       <el-form :inline="true" :model="masterPaperFrom" :rules="rules" ref="masterPaperFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="获奖日期" prop="getDate">
+        <el-form-item label="日期" prop="getDate">
           <div class="block">
               <el-date-picker
                 v-model="masterPaperFrom.getDate"

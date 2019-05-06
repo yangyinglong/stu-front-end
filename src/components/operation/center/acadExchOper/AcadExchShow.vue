@@ -129,6 +129,9 @@ export default {
         value: "研究生论坛",
         label: "研究生论坛"
       },{
+        value: "学院讲座",
+        label: "学院讲座"
+      },{
         value: "其他",
         label: "其他"
       }],
@@ -144,6 +147,9 @@ export default {
       },{
         value: "校级",
         label: "校级"
+      },{
+        value: "院级",
+        label: "院级"
       }],
       loading: false,
       rules: {
@@ -197,10 +203,10 @@ export default {
     modify(acadExchFrom) {
       this.$refs[acadExchFrom].validate((valid) => {
         if (valid) {
-          if (this.acadExchFrom.proofMaterialId == '') {
-            this.$message.warning("请上传佐证材料")
-            return
-          }
+          // if (this.acadExchFrom.proofMaterialId == '') {
+          //   this.$message.warning("请上传佐证材料")
+          //   return
+          // }
           this.$http.EditAcadExch(this.acadExchFrom).then((result) => {
             if (result.c === 200) {
               this.$message({
