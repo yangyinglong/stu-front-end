@@ -65,8 +65,7 @@
               :value="item.value">
             </el-option>
           </el-select>  
-        </el-form-item>
-        
+        </el-form-item>        
       </el-form>
       <br>
       <el-form :inline="true" :model="competitionFrom" :rules="rules" ref="competitionFrom" class="demo-form-inline" style="width: 100%" label-width="100px">

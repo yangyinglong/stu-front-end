@@ -15,6 +15,7 @@ import EntrProShow from '@/components/operation/center/entrProOper/EntrProShow'
 import InnoProShow from '@/components/operation/center/innoProOper/InnoProShow'
 import MasterPaperShow from '@/components/operation/center/masterPaperOper/MasterPaperShow'
 import WorkShow from '@/components/operation/center/workOper/WorkShow'
+import ProjectShow from '@/components/operation/center/projectOper/ProjectShow'
 
 Vue.use(Router)
 
@@ -104,6 +105,12 @@ const router = new Router({
       path: '/workShow',
       name: 'WorkShow',
       component: WorkShow,
+      meta: {authRequired: true}
+    },
+    {     
+      path: '/projectShow',
+      name: 'ProjectShow',
+      component: ProjectShow,
       meta: {authRequired: true}
     },
 

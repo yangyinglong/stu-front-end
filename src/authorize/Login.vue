@@ -112,6 +112,7 @@
                 this.$store.state.userName = result.r.name
                 this.$store.state.loginStatus = result.r.status
                 this.dialogLoginVisible = false
+                this.$router.push({name: 'Center', params:{tagP: 'baseInfo'}})
               } else {
                 // this.$message.warning("登录失败，请确认用户名和密码。")
                 this.dialogLoginVisible = true // todo

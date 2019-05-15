@@ -1,5 +1,5 @@
 <template>
-	<div style="margin: 0 auto; height: 550px">
+	<div style="margin: 0 auto; height: 590px">
 		<div style="text-align:center; margin-top: 20px;">
 			<el-form :inline="true" :model="scores" class="demo-form-inline" style="width: 100%" label-width="250px">
 			  <el-form-item label="已修课程数">
@@ -7,6 +7,14 @@
 			  </el-form-item>
 			  <el-form-item label="平均分">
 			    <el-input v-model="scores.averageScore" placeholder="平均分" readonly="true" style="width: 130px"></el-input>
+			  </el-form-item>
+			</el-form>
+			<el-form :inline="true" :model="scores" class="demo-form-inline" style="width: 100%" label-width="250px">
+			  <el-form-item label="已修学分数">
+			    <el-input v-model="scores.hadCredit" placeholder="已修学分数" readonly="true" style="width: 130px"></el-input>
+			  </el-form-item>
+			  <el-form-item label="加权平均分">
+			    <el-input v-model="scores.weightedAverageScore" placeholder="加权平均分" readonly="true" style="width: 130px"></el-input>
 			  </el-form-item>
 			</el-form>
 			<hr style=" height:2px;width: 800px; border:none;border-top:2px dotted #D6D6D6	;" />
@@ -106,6 +114,8 @@ export default {
 			    dianyingyantao: '',  // 典型企业制造案例研讨
 			    jisuanjichu: '',  // 计算流体力学基础
 			    xiandaililun: '',  // 现代控制理论
+			    weightedAverageScore: '',
+			    hadCredit: '',
 			},
 			readonly3: true
 		}
@@ -130,6 +140,8 @@ export default {
 				if (result.c === 200) {
 					this.scores.averageScore = result.r.averageScore
 					this.scores.currNumber = result.r.currNumber
+					this.scores.weightedAverageScore = result.r.weightedAverageScore
+					this.scores.hadCredit = result.r.hadCredit
 					if (result.r.engineeringMathematics != -1) {
 						this.scores.engineeringMathematics = result.r.engineeringMathematics
 					}

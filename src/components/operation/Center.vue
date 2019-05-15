@@ -11,9 +11,10 @@
 			<el-tab-pane label="学术论文" name="paperCenter"><PaperCenter /></el-tab-pane>
 			<el-tab-pane label="发明专利" name="patentCenter"><PatentCenter /></el-tab-pane>
 			<el-tab-pane label="学科竞赛" name="competitionCenter"><CompetitionCenter /></el-tab-pane>
-			<el-tab-pane label="创新项目" name="innoProCenter"><InnoProCenter /></el-tab-pane>
+			<!-- <el-tab-pane label="创新项目" name="innoProCenter"><InnoProCenter /></el-tab-pane>
 			<el-tab-pane label="创业项目" name="entrProCenter"><EntrProCenter /></el-tab-pane>
-			<el-tab-pane label="工程项目" name="engiProCenter"><EngiProCenter /></el-tab-pane>
+			<el-tab-pane label="工程项目" name="engiProCenter"><EngiProCenter /></el-tab-pane> -->
+			<el-tab-pane label="项目参与" name="projectCenter"><ProjectCenter /></el-tab-pane>
 			<el-tab-pane label="学术交流" name="acadExchCenter"><AcadExchCenter /></el-tab-pane>
 			<el-tab-pane label="就业深造" name="workCenter"><WorkCenter /></el-tab-pane>
 			<el-tab-pane label="硕士论文" name="masterPaperCenter"><MasterPaperCenter /></el-tab-pane>
@@ -35,6 +36,7 @@ import EngiProCenter from '@/components/operation/center/EngiProCenter'
 import AcadExchCenter from '@/components/operation/center/AcadExchCenter'
 import WorkCenter from '@/components/operation/center/WorkCenter'
 import MasterPaperCenter from '@/components/operation/center/MasterPaperCenter'
+import ProjectCenter from '@/components/operation/center/ProjectCenter'
 export default {
 	name: 'Center',
 	data () {
@@ -62,7 +64,8 @@ export default {
 		EngiProCenter,
 		AcadExchCenter,
 		WorkCenter,
-		MasterPaperCenter
+		MasterPaperCenter,
+		ProjectCenter
 	},
 }		
 </script>

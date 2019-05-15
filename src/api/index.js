@@ -203,5 +203,14 @@ export default {
 
   DownLoad(params){
     return getFetch('/file/printImg', params)
-  }
+  },
+  EditProject(params){
+    return fetch('/prize/editProject', params)
+  },
+  ShowProjects(params){
+    return fetch('/prize/getProjects', params)
+  },
+  DeleProject(params){
+    return fetch('/prize/deleProject', params)
+  },
 }

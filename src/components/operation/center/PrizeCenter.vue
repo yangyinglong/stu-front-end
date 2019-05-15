@@ -32,12 +32,12 @@
 			  </el-form-item>
 			</el-form>
 
-			<el-form :inline="true" :model="prizes" class="demo-form-inline" style="width: 100%" label-width="100px">
-			  <el-form-item label="工程项目排名">
-			    <el-input v-model="prizes.engiNum" placeholder="工程项目排名" :readonly="readonly4" style="width: 130px"></el-input>
+			<!-- <el-form :inline="true" :model="prizes" class="demo-form-inline" style="width: 100%" label-width="100px">
+			  <el-form-item label="创新项目排名">
+			    <el-input v-model="prizes.innoNum" placeholder="创新项目排名" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
-			  <el-form-item label="工程项目总分">
-			    <el-input v-model="prizes.engiScore" placeholder="工程项目总分" :readonly="readonly4" style="width: 130px"></el-input>
+			  <el-form-item label="创新项目总分">
+			    <el-input v-model="prizes.innoScore" placeholder="创新项目总分" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
 			  <el-form-item label="创业项目排名">
 			    <el-input v-model="prizes.entrNum" placeholder="创业项目排名" :readonly="readonly4" style="width: 130px"></el-input>
@@ -45,15 +45,18 @@
 			  <el-form-item label="创业项目总分">
 			    <el-input v-model="prizes.entrScore" placeholder="创业项目总分" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
-			</el-form>
+			</el-form> -->
 
 			<el-form :inline="true" :model="prizes" class="demo-form-inline" style="width: 100%" label-width="100px">
-			  <el-form-item label="创新项目排名">
-			    <el-input v-model="prizes.innoNum" placeholder="创新项目排名" :readonly="readonly4" style="width: 130px"></el-input>
+			  
+
+			  <el-form-item label="工程项目排名">
+			    <el-input v-model="prizes.engiNum" placeholder="参与项目排名" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
-			  <el-form-item label="创新项目总分">
-			    <el-input v-model="prizes.innoScore" placeholder="创新项目总分" :readonly="readonly4" style="width: 130px"></el-input>
+			  <el-form-item label="工程项目总分">
+			    <el-input v-model="prizes.engiScore" placeholder="参与项目总分" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
+
 			  <el-form-item label="学术交流排名">
 			    <el-input v-model="prizes.exchNum" placeholder="学术交流排名" :readonly="readonly4" style="width: 130px"></el-input>
 			  </el-form-item>
