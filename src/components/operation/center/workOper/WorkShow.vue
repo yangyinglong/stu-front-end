@@ -11,41 +11,88 @@
         </el-form-item>
       </el-form>
       <br>
-      <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="单位名称" prop="companyName">
-          <el-input v-model="workFrom.companyName" placeholder="单位名称" style="width: 525px"></el-input>
-        </el-form-item>
-      </el-form>
-      <br>
-      <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="单位性质" prop="companyType">
-          <el-select v-model="workFrom.companyType" placeholder="请选择单位性质" style="width: 205px">
-            <el-option
-              v-for="item in companyTypes"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>  
-        </el-form-item>
-        <el-form-item label="就业类型" prop="companyName">
-          <el-input v-model="workFrom.workType " placeholder="就业类型" style="width: 205px"></el-input>
-        </el-form-item>
-      </el-form>
-      <br>
-      <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
-        <el-form-item label="开始日期" prop="getDate">
-          <div class="block">
-              <el-date-picker
-                v-model="workFrom.getDate"
-                type="date"
-                placeholder="选择日期"
-                style="width: 525px">
-              </el-date-picker>
-            </div>
-        </el-form-item>        
-      </el-form>
-      <br>
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <el-form-item label="就业深造" prop="workType">
+         <el-select v-model="workFrom.workType" placeholder="请选择具体就业深造" style="width: 525px">
+           <el-option
+             v-for="item in workTypes"
+             :key="item.value"
+             :label="item.label"
+             :value="item.value">
+           </el-option>
+         </el-select>  
+       </el-form-item>
+     </el-form>
+     <br>
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <el-form-item label="单位名称" prop="companyName">
+         <el-input v-model="workFrom.companyName" placeholder="单位名称/学校名称" style="width: 525px"></el-input>
+       </el-form-item>
+     </el-form>
+
+     <br v-if="workFrom.workType == '国内升学'">
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px" v-if="workFrom.workType == '国内升学'">
+       <el-form-item label="专业名称">
+         <el-input v-model="workFrom.workClass" placeholder="专业名称" style="width: 525px"></el-input>
+       </el-form-item>
+     </el-form>
+
+     <br v-if="workFrom.workType == '就业'">
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px" v-if="workFrom.workType == '就业'">
+       <el-form-item label="是否专业对口" prop="isCmp">
+         <el-select v-model="workFrom.isCmp" placeholder="请选择专业是否对口" style="width: 205px">
+           <el-option
+             v-for="item in isCmps"
+             :key="item.value"
+             :label="item.label"
+             :value="item.value">
+           </el-option>
+         </el-select>  
+       </el-form-item>
+       <el-form-item label="职位类别" prop="workClass">
+         <el-select v-model="workFrom.workClass" placeholder="请选择职位类别" style="width: 205px">
+           <el-option
+             v-for="item in workClasses"
+             :key="item.value"
+             :label="item.label"
+             :value="item.value">
+           </el-option>
+         </el-select>  
+       </el-form-item>
+     </el-form>
+
+     <br v-if="workFrom.workType == '就业' || workFrom.workType == '自主创业'">
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <el-form-item label="单位性质" v-if="workFrom.workType == '就业'">
+         <el-select v-model="workFrom.companyType" placeholder="请选择单位性质" style="width: 525px">
+           <el-option
+             v-for="item in companyTypes"
+             :key="item.value"
+             :label="item.label"
+             :value="item.value">
+           </el-option>
+         </el-select>  
+       </el-form-item>
+       <el-form-item label="创业内容" v-else-if="workFrom.workType == '自主创业'">
+         <el-input type="textarea" v-model="workFrom.companyType" placeholder="请填写创业内容" style="width: 525px"></el-input>
+       </el-form-item>
+     </el-form>
+     <br>
+     <el-form :inline="true" :model="workFrom" :rules="rules" ref="workFrom" class="demo-form-inline" style="width: 100%" label-width="100px">
+       <el-form-item label="地点" prop="address">
+         <el-input v-model="workFrom.address" placeholder="请填写去向地址(国家/省/市)" style="width: 205px"></el-input>
+       </el-form-item>
+       <el-form-item label="开始日期" prop="getDate">
+         <div class="block">
+             <el-date-picker
+               v-model="workFrom.getDate"
+               type="date"
+               placeholder="选择日期"
+               style="width: 205px">
+             </el-date-picker>
+           </div>
+       </el-form-item>        
+     </el-form>
       <br>
       <!-- <el-upload
         class="upload-demo"
@@ -83,39 +130,108 @@ export default {
         workFrom: {
           stuId: sessionStorage.getItem('userId'),
           name: sessionStorage.getItem('userName'),
-          companyName: '',
-          companyType: '',
           workType: '',
+          companyName: '',
+          isCmp: '',
+          companyType: '',
+          workClass: '',
+          address: '',
           getDate: '',
           proofMaterialId: '',
         },
+       workTypes: [{
+          value: '就业',
+          label: '就业'
+        },{
+          value: '国内升学',
+          label: '国内升学'
+        },{
+          value: '出国(境)留学',
+          label: '出国(境)留学'
+        },{
+          value: '自主创业',
+          label: '自主创业'
+        }],
+
+        isCmps: [{
+          value: '是',
+          label: '是'
+        },{
+          value: '否',
+          label: '否'
+        }],
+
+        workClasses: [{
+          value: '公务员',
+          label: '公务员'
+        },{
+          value: '科学研究人员',
+          label: '科学研究人员'
+        },{
+          value: '工程技术人员',
+          label: '工程技术人员'
+        },{
+          value: '农林牧渔技术人员',
+          label: '农林牧渔技术人员'
+        },{
+          value: '卫生专业技术人员',
+          label: '卫生专业技术人员'
+        },{
+          value: '金融业务人员',
+          label: '金融业务人员'
+        },{
+          value: '法律专业人员',
+          label: '法律专业人员'
+        },{
+          value: '教学人员',
+          label: '教学人员'
+        },{
+          value: '文艺艺术工作人员',
+          label: '文艺艺术工作人员'
+        },{
+          value: '新闻出版和文化工作人员',
+          label: '新闻出版和文化工作人员'
+        },{
+          value: '办事人员和有关人员',
+          label: '办事人员和有关人员'
+        },{
+          value: '商业和服务业务人员',
+          label: '商业和服务业务人员'
+        },{
+          value: '生产和运输设备设备操作人员',
+          label: '生产和运输设备设备操作人员'
+        },{
+          value: '其他人员',
+          label: '其他人员'
+        }],
+
         companyTypes: [{
+          value: "机关",
+          label: "机关"
+        },{
+          value: "高等教育单位",
+          label: "高等教育单位"
+        },{
+          value: "中初教育单位",
+          label: "中初教育单位"
+        },{
+          value: "医疗卫生单位",
+          label: "医疗卫生单位"
+        },{
+          value: "其他专业技术人员",
+          label: "其他专业技术人员"
+        },{
           value: "国有企业",
           label: "国有企业"
         },{
-          value: "事业单位",
-          label: "事业单位"
+          value: "三资企业",
+          label: "三资企业"
         },{
-          value: "高等院校",
-          label: "高等院校"
+          value: "其他企业",
+          label: "其他企业"
         },{
-          value: "研究院所",
-          label: "研究院所"
-        },{
-          value: "国外高校",
-          label: "国外高校"
-        },{
-          value: "合资企业",
-          label: "合资企业"
-        },{
-          value: "外资企业",
-          label: "外资企业"
-        },{
-          value: "民营企业",
-          label: "民营企业"
-        },{
-          value: "私营企业",
-          label: "私营企业"
+          value: "部队",
+          label: "部队"
         }],
         loading: false,
         rules: {
@@ -126,21 +242,28 @@ export default {
             {required: true, message: '单位性质不能为空', trigger: 'blur'},
           ],
           workType: [
-            {required: true, message: '就业性质不能为空', trigger: 'blur'},
+            {required: true, message: '就业深造性质不能为空', trigger: 'blur'},
+          ],
+          address: [
+            {required: true, message: '省市不能为空', trigger: 'blur'},
           ],
           getDate: [
             {required: true, message: '时间不能为空', trigger: 'blur'},
           ]
-        },
+        }
     }
   },
   created() {
     this.workFrom.id = sessionStorage.getItem('id')
     this.workFrom.name = sessionStorage.getItem('userName')
     this.workFrom.stuId = sessionStorage.getItem('stuId')
-    this.workFrom.companyName = sessionStorage.getItem('companyName')
-    this.workFrom.companyType = sessionStorage.getItem('companyType')
+
     this.workFrom.workType = sessionStorage.getItem('workType')
+    this.workFrom.companyName = sessionStorage.getItem('companyName')
+    this.workFrom.isCmp = sessionStorage.getItem('isCmp')
+    this.workFrom.companyType = sessionStorage.getItem('companyType')
+    this.workFrom.workClass = sessionStorage.getItem('workClass')
+    this.workFrom.address = sessionStorage.getItem('address')
     this.workFrom.getDate = sessionStorage.getItem('getDate')    
   },
   computed: {
