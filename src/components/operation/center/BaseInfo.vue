@@ -221,6 +221,13 @@ export default {
 			})
 		},
 		commit1() {
+			if (this.baseInfo.uSchool == '' || this.baseInfo.uMajor == '' || this.baseInfo.english == '' || this.baseInfo.political == '' || this.baseInfo.math == '' || this.baseInfo.specialized == '' || this.baseInfo.languagesTypes == '' || this.baseInfo.languagesScore == '' || this.baseInfo.idCard == '' || this.baseInfo.masterMajor == '' || this.baseInfo.politicalOutlook == '' || this.baseInfo.biogenicLand == '' || this.baseInfo.masterDirection == '' || this.baseInfo.eMail == '' || this.baseInfo.emergencyContact == '' || this.baseInfo.emergencyPhone == '') {
+				this.$message({
+					message: "请完整填写信息！！",
+					type: 'notify'
+	            });
+	            return;
+			}
 			this.readonly1 = true
 			var entranceScore = {
 				stuId: this.baseInfo.stuId,
@@ -259,6 +266,13 @@ export default {
 
 		},
 		commit2() {
+			if (this.baseInfo.tutor == '' || this.baseInfo.counsellor == '' || this.baseInfo.secretary == '') {
+				this.$message({
+					message: "请完整填写信息！！",
+					type: 'notify'
+	            });
+	            return;
+			}
 			this.readonly2 = true
 			var tuCoer = {
 				stuId: this.baseInfo.stuId,

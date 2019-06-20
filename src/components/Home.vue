@@ -1,5 +1,5 @@
 <template>
-  <div class="home-carousel">
+  <div class="home-carousel"">
     <!-- <el-carousel indicator-position="outside" class="hello">
       <el-carousel-item v-for="item in 4" :key="item">
         <h3>{{ item }}</h3>
